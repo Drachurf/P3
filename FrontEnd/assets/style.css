@@ -185,7 +185,23 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em
 }
-
-.filtres {
+/*Mise en place du filtre*/
+.filtre {
 	display: flex;
+	justify-content: center;
+	font-family: 'Syne';
+	color: #1D6154;
+	font-weight: 700;
+	margin-bottom: 3%;
+}
+.btnfiltre{
+	margin-left: 1%;
+	padding: 1% 1% 1% 1%;
+	border: 1px solid #1D6154;
+	border-radius: 25px;
+}
+
+.btnfiltre:hover{
+	background-color: #1D6154;
+	color: white;
 }

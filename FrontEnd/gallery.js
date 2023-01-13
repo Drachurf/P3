@@ -1,29 +1,55 @@
 // Récupération des cartes depuis le fichier JSON
 const reponse = await fetch('gallery.json');
-const gallery = await reponse.json();
+const articles = await reponse.json();
 
-for (let i = 0; i < gallery.length; i++) {
+function genererArticles(articles){
+for (let i = 0; i < articles.length; i++) {
 // Elements récupérés
-const article = gallery[i];
+        const article = articles[i];
+        const sectionGallery = document.querySelector(".gallery");
 
-const imageElement = document.createElement("img");
-imageElement.src = article.image;
+        const galleryElement = document.createElement("article");
 
-const nomElement = document.createElement("h3");
-nomElement.innerText = article.nom;
+        const imageElement = document.createElement("img");
+        imageElement.src = article.image;
+        const nomElement = document.createElement("h3");
+        nomElement.innerText = article.nom;
 
-const sectionGallery = document.querySelector(".gallery");
-sectionGallery.appendChild(imageElement);
-sectionGallery.appendChild(nomElement);
+        sectionGallery.appendChild(galleryElement);
 
-};
+        galleryElement.appendChild(imageElement);
+        galleryElement.appendChild(nomElement);
+
+}}
+
+genererArticles(articles);
 
 // Filtres
+
 const boutonObjet = document.querySelector(".btnobjet");
 
 boutonObjet.addEventListener("click", function () {
-    const galleryObjet = gallery.filter(function (gallery) {
-        return gallery.categorie["Objet"] /*objet.....????*/
+
+    const articlesfiltres = articles.filter(function (article){
+        return article.categorie
     });
-   console.log(galleryObjet)
+    document.querySelector(".gallery").innerHTML = "";
+    genererArticles(articlesfiltres);
+
+    console.log(articlesfiltres);
 });
+
+const boutonTous = document.querySelector(".btntous");
+
+boutonTous.addEventListener("click", function () {
+
+    const articlesNofiltre = articles.filter(function (article){
+        return article.id
+    });
+    document.querySelector(".gallery").innerHTML = "";
+    genererArticles(articlesNofiltre);
+
+    console.log(articlesNofiltre);
+});
+
+

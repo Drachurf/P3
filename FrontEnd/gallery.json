@@ -2,13 +2,13 @@
     {
     "id": 1,
     "nom": "Abajour Tahina",
-    "categorie": "Objet",
+    "categorie": ["Objet", "Tous"],
     "image": "../FrontEnd/assets/images/abajour-tahina.png"
 },
 {
     "id": 2,
     "nom": "Appartement Paris",
-    "categorie": "Appartement",
+    "categorie": ["Appartement", "Tous"],
     "image": "../FrontEnd/assets/images/appartement-paris-v.png"
 },
 {

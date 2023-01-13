@@ -2,67 +2,67 @@
     {
     "id": 1,
     "nom": "Abajour Tahina",
-    "categorie": ["Objets","Tous"],
+    "categorie": "Objet",
     "image": "../FrontEnd/assets/images/abajour-tahina.png"
 },
 {
     "id": 2,
     "nom": "Appartement Paris",
-    "categorie": ["Appartement","Tous"],
+    "categorie": "Appartement",
     "image": "../FrontEnd/assets/images/appartement-paris-v.png"
 },
 {
     "id": 3,
     "nom": "Restaurant Sushinen - Londres",
-    "categorie": ["Hôtel & Restaurants","Tous"],
+    "categorie": "Hôtel & Restaurants",
     "image": "../FrontEnd/assets/images/restaurant-sushisen-londres.png"
 },
 {
     "id": 4,
     "nom": "Pavillon \"la Balisiere - Port Louis",
-    "categorie": ["Hôtel & Restaurants","Tous"],
+    "categorie": "Hôtel & Restaurants",
     "image": "../FrontEnd/assets/images/la-balisiere.png"
 },
 {
     "id": 5,
     "nom": "Structure Thermopolis",
-    "categorie": ["Objets","Tous"],
+    "categorie": "Objet",
     "image": "../FrontEnd/assets/images/structures-thermopolis.png"
 },
 {
     "id": 6,
     "nom": "Appartement Paris X",
-    "categorie": ["Appartement","Tous"],
+    "categorie": "Appartement",
     "image": "../FrontEnd/assets/images/appartement-paris-x.png"
 },
 {
     "id": 7,
     "nom": "Pavillon \"Le Coteau - Casis",
-    "categorie": ["Hôtel & Restaurants","Tous"],
+    "categorie": "Hôtel & Restaurants",
     "image": "../FrontEnd/assets/images/le-coteau-cassis.png"
 },
 {
     "id": 8,
     "nom": "Villa Ferneze - Isola d'Elba",
-    "categorie": ["Hôtel & Restaurants","Tous"],
+    "categorie": "Hôtel & Restaurants",
     "image": "../FrontEnd/assets/images/villa-ferneze.png"
 },
 {
     "id": 9,
     "nom": "Appartement Paris XVIII",
-    "categorie": ["Appartement","Tous"],
+    "categorie": "Appartement",
     "image": "../FrontEnd/assets/images/appartement-paris-xviii.png"
 },
 {
     "id": 10,
     "nom": "Bar \"Lullaby - Paris",
-    "categorie": ["Hôtel & Restaurants","Tous"],
+    "categorie": "Hôtel & Restaurants",
     "image": "../FrontEnd/assets/images/bar-lullaby-paris.png"
 },
 {
     "id": 11,
     "nom": "Hôtel First Arte - New Delhi",
-    "categorie": ["Hôtel & Restaurants","Tous"],
+    "categorie": "Hôtel & Restaurants",
     "image": "../FrontEnd/assets/images/hotel-first-arte-new-delhi.png"
 }
 ]

@@ -135,8 +135,8 @@ li:hover {
 
 .gallery img {
 	width: 100%;
-
 }
+
 #contact {
 	width: 50%;
 margin: auto;
@@ -194,13 +194,19 @@ footer nav ul {
 	font-weight: 700;
 	margin-bottom: 3%;
 }
-.btnfiltre{
+.btntous, .btnobjet, .btnappart, .btnhotel{
 	margin-left: 1%;
 	padding: 1% 1% 1% 1%;
 	border: 1px solid #1D6154;
 	border-radius: 25px;
+	background-color: white;
+	color: #1D6154;
+	font-family: 'Syne';
+	font-size: 16px;
+	text-align: center;
+
 }
-.btnfiltre:hover{
+.btntous:hover, .btnobjet:hover, .btnappart:hover, .btnhotel:hover{
 	background-color: #1D6154;
 	color: white;
 }

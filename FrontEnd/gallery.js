@@ -19,7 +19,6 @@ sectionGallery.appendChild(nomElement);
 };
 
 // Filtres
-
 const boutonObjet = document.querySelector(".btnobjet");
 
 boutonObjet.addEventListener("click", function () {

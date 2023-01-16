@@ -21,22 +21,19 @@ for (let i = 0; i < articles.length; i++) {
         galleryElement.appendChild(nomElement);
 
 }}
-
 genererArticles(articles);
 
 // Filtres
-
 const boutonObjet = document.querySelector(".btnobjet");
-
 boutonObjet.addEventListener("click", function () {
-
-    const articlesfiltres = articles.filter(function (article){
-        return article.categorie
+    
+    const articlesObjet = articles.filter(function (article){
+        return article.categorie;
     });
     document.querySelector(".gallery").innerHTML = "";
-    genererArticles(articlesfiltres);
+    genererArticles(articlesObjet);
 
-    console.log(articlesfiltres);
+    console.log(articlesObjet);
 });
 
 const boutonTous = document.querySelector(".btntous");

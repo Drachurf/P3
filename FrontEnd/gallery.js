@@ -29,10 +29,9 @@ genererArticles(articles);
 const boutonTous = document.querySelector("#btntous");
 boutonTous.addEventListener("click", function () {
   const articlesNofiltre = articles.filter(function (article) {
-    return article.id
+    return article.id;
   });
   document.querySelector(".gallery").innerHTML = "";
-  console.log(articlesNofiltre);
   genererArticles(articlesNofiltre);
 });
 
@@ -45,7 +44,6 @@ boutonObjet.addEventListener("click", function () {
   });
 
   document.querySelector(".gallery").innerHTML = "";
-  console.log(filtreObjets);
   genererArticles(filtreObjets);
 });
 
@@ -58,7 +56,6 @@ boutonAppart.addEventListener("click", function () {
   });
 
   document.querySelector(".gallery").innerHTML = "";
-  console.log(filtreApparts);
   genererArticles(filtreApparts);
 });
 
@@ -71,39 +68,5 @@ boutonHotel.addEventListener("click", function () {
   });
 
   document.querySelector(".gallery").innerHTML = "";
-  console.log(filtreHotels);
   genererArticles(filtreHotels);
 });
-
-const boutonSubmit = document.querySelector("#submit");
-boutonSubmit.addEventListener("click", function (e) {
-  e.preventDefault();
-
-  const email = document.querySelector("#email");
-  const password = document.querySelector("#password");
-
-  let login = {
-    email: email,
-    password: password,
-  };
-
-  let response = fetch("http://localhost:5678/api/users/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json;charset=utf-8",
-    },
-    body: JSON.stringify(login),
-  });
-
-  console.log(response);
-});
-
-/* function(json) { // Si ça c'est passé avec succès
-    // ici on teste la réponse
-    if(json.reponse === 'ok') {
-      alert('Connexion OK');
-      // On peut aussi rediriger vers l'index
-      window.location.href = 'index.html';
-    } else {
-      alert('Erreur : '+ json.reponse);  }
-    };*/

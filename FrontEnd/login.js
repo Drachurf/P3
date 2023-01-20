@@ -2,11 +2,11 @@
 document.querySelector("#submit").addEventListener("click", function (e) {
   e.preventDefault()
 
-  const email = document.querySelector("#email");
+  const mail = document.querySelector("#mail");
   const password = document.querySelector("#password");
 
   let login = {
-    email: document.getElementById(email),
+    mail: document.getElementById(mail),
     password: document.getElementById(password),
   };
 
@@ -17,9 +17,17 @@ document.querySelector("#submit").addEventListener("click", function (e) {
       "Content-Type": "application/json;",
     },
     body: JSON.stringify(login),
+  })
+
+  .then(function (response) {
+    if (response.ok) {
+      console.log("good");
+    } else {
+      alert("non");
+    }
   });
-console.log(response);
-console.log(email);
-console.log(password);
-console.log(login);
+  console.log(response);
+  console.log(email);
+  console.log(password);
+  console.log(login);
 });

@@ -150,4 +150,3 @@ export function ajoutListenerAjoutPhoto() {
   })
   console.log(ajoutPhoto);
 }
-

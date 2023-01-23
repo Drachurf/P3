@@ -9,8 +9,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
       integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
       crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    >
+	  referrerpolicy="no-referrer">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
@@ -44,23 +43,25 @@
 	</section>
 	<section id="portfolio">
 	<h2>Mes Projets </h2><a href="#modal1" class="js-modal">Modifier</a>
-	
 	<!-- Mise en place de la modale-->
-    <aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal" style="display:none;">
-				<div class="modal-wrapper js-modal-stop">
-							<button class="js-modal-close">X</button>
-						<h3 id="titlemodal">Galerie Photo</h3>
-						<!-- Photo modal -->
-						<div class="galleryEditor"></div>
-						<button type="button" class="btnphotomodal1" data-toggle="modal2" data-target="#modal2" data-whatever="@fat">Ajouter photo</button>
-						<a class="suppression" href="#">Supprimer la galerie</a>
-				</div>
-	</aside>
-		<!--  test modale 2-->
-	<aside id="modal2" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal" style="display:none;">
-			
-			<h3 id="titlemodal">Ajout Photo</h3>
-			<form class="formadphoto">
+    <aside> 
+		<div id="modal1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal" style="display:none;">
+			<div class="modal-wrapper js-modal-stop">
+				<button class="js-modal-close">X</button>
+				<h3 id="titlemodal">Galerie Photo</h3>
+			<!-- Photo modal -->
+			<div id="galleryeditor"></div>
+				<button href="#modal2" class="btnphotomodal2">Ajouter photo</button>
+				<button class="suppression">Supprimer la galerie</button>
+			</div>
+		</div>
+
+		<!-- modale 2-->
+		<div id="modal2" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal" style="display:none;">
+			<div class="modal-wrapper js-modal-stop">
+				<div><button class="return">retour</button> <button class="js-modal-close">X</button></div>
+				<h3 id="titlemodal">Ajout Photo</h3>
+				<form class="formadphoto">
 					<div class="newphoto">
 						<img src="" alt="" name="imageUrl">
 						<input type="submit" value="+ Ajouter photo">
@@ -69,14 +70,15 @@
 					Titre <br>
 					<input type="text" name="title"><br>
 					<label>Catégorie</label><br>
-						<select name="categoryId">
-					    <option value="Id1">Objets</option>
-					    <option value="Id2">Appartements</option>
+					<select name="categoryId">
+						<option value="Id1">Objets</option>
+						<option value="Id2">Appartements</option>
     					<option value="Id3">Hotels & restaurants</option>
-						</select><br>
-					<button id="btnvalider">Valider</button>
-			</form>
-
+					</select><br>
+					<button class="ajout-photo" id="btnvalider">Valider</button>
+				</form>
+			</div>
+		</div>
 	</aside> 
 		<!--mise en place du filtre-->
 			<div class="filtre">
@@ -87,7 +89,6 @@
 			</div>
 			<!-- Photo/titres -->
 			<div class="gallery"></div>
-
 	</section>
 	<section id="contact">
 		<h2>Contact</h2>

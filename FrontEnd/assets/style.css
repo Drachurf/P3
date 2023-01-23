@@ -215,6 +215,7 @@ footer nav ul {
 #boxlog a {
 	color : black;
 }
+
 /* Mise en place de la modal*/
 
 .modal, .modal2 {
@@ -253,14 +254,17 @@ h3{
 	width: 78px;
 }
 
-.galleryEditor{
-display : flex;
-flex-wrap: wrap;
-margin: 0% 15%;
-gap : 10px;
+#galleryeditor{
+display: flex;
+
 }
 
-.btnphotomodal1{
+.editarticle img{
+	width: 50px;
+	height: 50px;
+}
+
+.btnphotomodal2{
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -277,5 +281,6 @@ gap : 10px;
 
 .suppression{
 		color: #D65353;
-		text-decoration: none;
+		background: none;
+		border: none;
 }

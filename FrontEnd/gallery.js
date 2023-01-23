@@ -4,6 +4,7 @@ const articles = await works.json();
 const categories = await fetch("http://localhost:5678/api/categories");
 const filtres = await categories.json();
 
+//générer la gallerie
 function genererArticles(articles) {
   for (let i = 0; i < articles.length; i++) {
     const article = articles[i];
@@ -21,17 +22,24 @@ function genererArticles(articles) {
     sectionGallery.appendChild(galleryElement);
     galleryElement.appendChild(imageElement);
     galleryElement.appendChild(nomElement);
-    
-   /* const sectionEditor = document.querySelector(".galleryEditor");
-    const imageEditorElement = document.createElement("img");
-    imageEditorElement.src = article.imageUrl;
-    imageEditorElement.crossOrigin = "anonymous";
 
-    EditorElement.appendChild(imageEditorElement);*/
+    const galleryEditor = document.querySelector("#galleryeditor");
+    const EditElement = document.createElement("Editarticle");
+    const cloneGallery = imageElement.cloneNode();
+    const editer = document.createElement("h4");
+
+    galleryEditor.appendChild(EditElement)
+    EditElement.appendChild(cloneGallery)
+    EditElement.appendChild(editer)
+
     
+   
+   
   }
 }
 genererArticles(articles);
+
+
 
 // filtre TOUS
 const boutonTous = document.querySelector("#btntous");
@@ -39,7 +47,7 @@ boutonTous.addEventListener("click", function () {
   const articlesNofiltre = articles.filter(function (article) {
     return article.id;
   });
-  document.querySelector(".gallery").innerHTML = "";
+  document.querySelector("#gallery").innerHTML = "";
   genererArticles(articlesNofiltre);
 });
 
@@ -51,7 +59,7 @@ boutonObjet.addEventListener("click", function () {
     return article.category.id === 1;
   });
 
-  document.querySelector(".gallery").innerHTML = "";
+  document.querySelector("#gallery").innerHTML = "";
   genererArticles(filtreObjets);
 });
 
@@ -63,7 +71,7 @@ boutonAppart.addEventListener("click", function () {
     return article.category.id === 2;
   });
 
-  document.querySelector(".gallery").innerHTML = "";
+  document.querySelector("#gallery").innerHTML = "";
   genererArticles(filtreApparts);
 });
 
@@ -75,14 +83,14 @@ boutonHotel.addEventListener("click", function () {
     return article.category.id === 3;
   });
 
-  document.querySelector(".gallery").innerHTML = "";
+  document.querySelector("#gallery").innerHTML = "";
   genererArticles(filtreHotels);
 });
 
+const boutonModal2 = document.querySelector("#btnphotomodal2");
+
 // Modale
-
 let modal = null
-
 const openModal = async function (e) {
   e.preventDefault()
   modal = document.querySelector(e.target.getAttribute('href'))
@@ -93,8 +101,6 @@ const openModal = async function (e) {
   modal.querySelector('.js-modal-close').addEventListener('click', closeModal)
   modal.querySelector('.js-modal-stop').addEventListener('click', stopPropagation)
 }
-
-
 const closeModal = function(e){
   if (modal === null) return
   e.preventDefault()
@@ -104,41 +110,37 @@ const closeModal = function(e){
   modal.removeEventListener('click', closeModal)
   modal.querySelector('.js-modal-close').removeEventListener('click', closeModal)
   modal.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation)
+  modal.querySelector('.js-modal-close').removeEventListener('click', boutonModal2)
   modal = null
 }
- 
 const stopPropagation = function (e){
     e.stopPropagation()
 }
 document.querySelectorAll('.js-modal').forEach(a=> {
   a.addEventListener('click', openModal)
 })
-
-
 window.addEventListener('keydown', function (e){
   if (e.key === "Escape" || e.key === "Esc"){
     closeModal(e)
   }
 })
 
+// Créer la modale 2
 
-//Ajouter des Elements dans la modale
 
+//Ajouter des Elements dans la modale 2
 export function ajoutListenerAjoutPhoto() {
   const formulairePhoto = document.querySelector(".ajout-photo");
   formulairePhoto.addEventlistener("submit", function (e) {
     e.preventDefault();
 
-// Objet de la photo
-
+// Ajouter des photos
     const ajoutPhoto = {
-      
       photoId: parseInt(e.target.querySelector("[name=id]").value),
       imageUrl: parseInt(e.target.querySelector("[name=imageUrl]").value),
       title: parseInt(e.target.querySelector("[name=title]").value),
       categoryId: parseInt(e.target.querySelector("[name=categoryId]").value),
       };
-
       const chargeUtile = JSON.stringify(ajout);
 
       fetch("http://localhost:5678/api/works"), {

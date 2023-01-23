@@ -45,26 +45,38 @@
 	<section id="portfolio">
 	<h2>Mes Projets </h2><a href="#modal1" class="js-modal">Modifier</a>
 	
-	<!-- Mise en place de la modale -->
-	
+	<!-- Mise en place de la modale-->
     <aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal" style="display:none;">
 				<div class="modal-wrapper js-modal-stop">
-				
-							<button class="js-modal-close">X</i></button>
-
+							<button class="js-modal-close">X</button>
 						<h3 id="titlemodal">Galerie Photo</h3>
-
 						<!-- Photo modal -->
 						<div class="galleryEditor"></div>
-
-						<a class="btnphotomodal1" href="#modal2">Ajouter une photo</a>
+						<button type="button" class="btnphotomodal1" data-toggle="modal2" data-target="#modal2" data-whatever="@fat">Ajouter photo</button>
 						<a class="suppression" href="#">Supprimer la galerie</a>
-					</div>
 				</div>
-		</aside>
-		<aside id="modal2" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal" style="display:none;">
+	</aside>
+	<aside id="modal2" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal" style="display:none;">
+			
+			<h3 id="titlemodal">Ajout Photo</h3>
+			<form class="formadphoto">
+					<div class="newphoto">
+						<img src="" alt="" name="imageUrl">
+						<input type="submit" value="+ Ajouter photo">
+						<p>jpg, png : 4mo max</p>
+					</div>
+					Titre <br>
+					<input type="text" name="title"><br>
+					<label>Catégorie</label><br>
+						<select name="categoryId">
+					    <option value="Id1">Objets</option>
+					    <option value="Id2">Appartements</option>
+    					<option value="Id3">Hotels & restaurants</option>
+						</select><br>
+					<button id="btnvalider">Valider</button>
+			</form>
 
-		</aside>
+	</aside> 
 		<!--mise en place du filtre-->
 			<div class="filtre">
 				<button id="btntous" >Tous</button>
@@ -99,3 +111,5 @@
 </footer>
 </body>
 </html>
+
+

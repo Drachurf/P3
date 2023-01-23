@@ -108,7 +108,7 @@ const closeModal = function(e){
 }
  
 const stopPropagation = function (e){
-    e.stopPropagation
+    e.stopPropagation()
 }
 document.querySelectorAll('.js-modal').forEach(a=> {
   a.addEventListener('click', openModal)
@@ -120,3 +120,34 @@ window.addEventListener('keydown', function (e){
     closeModal(e)
   }
 })
+
+
+//Ajouter des Elements dans la modale
+
+export function ajoutListenerAjoutPhoto() {
+  const formulairePhoto = document.querySelector(".ajout-photo");
+  formulairePhoto.addEventlistener("submit", function (e) {
+    e.preventDefault();
+
+// Objet de la photo
+
+    const ajoutPhoto = {
+      
+      photoId: parseInt(e.target.querySelector("[name=id]").value),
+      imageUrl: parseInt(e.target.querySelector("[name=imageUrl]").value),
+      title: parseInt(e.target.querySelector("[name=title]").value),
+      categoryId: parseInt(e.target.querySelector("[name=categoryId]").value),
+      };
+
+      const chargeUtile = JSON.stringify(ajout);
+
+      fetch("http://localhost:5678/api/works"), {
+        method: "POST",
+        headers: {"Content-Type": "multipart/form-data"},
+        body: chargeUtile
+      }
+
+  })
+  console.log(ajoutPhoto);
+}
+

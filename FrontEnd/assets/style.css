@@ -207,49 +207,52 @@ margin: auto;
 	color: white;
 }
 /* Mise en place de la modal*/
-.fermer{
-	display: flex;
-	justify-content: flex-end;
-	background: none;
-	border: none;
-	margin: 1%;
-	font-size: large ;
-}
 .modal {
         position: fixed;
         display: flex;
 		align-items: center;
         justify-content: center;
         top: 0;
-        left: 0;
+		left: 0;
         width: 100%;
         height: 100%;
         background: rgba(0, 0, 0, .8);
+}
+.modal-wrapper{
+	width: 630px;
+	height: 731px;
+    background-color: white;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+	align-items: center;
+}
+.fermer{
+	margin: 2%;
+	font-size: large ;
+	background: none;
+	border: none;
 }
 h3{
 	font-size: 26px;
 	text-align: center;
 	margin-top: 20px;
-}
-.modal-wrapper{
-	width: 95%;
-    height: 95%;
-    background-color: white;
-    border-radius: 25px;
-    display: flex;
-    flex-direction: column;
-;
+	margin-bottom: 30px;
 }
 .galleryeditor{
 display : flex;
 flex-wrap: wrap;
-}
+margin: 1% 8%;
+gap : 5px;
 
+}
 .galleryeditor img{
 	width: 100px;
-	height: 100px;
 }
-
+hr{
+	color:#B3B3B3;
+	margin: 5%;
+}
 .btnphotomodal2{
 	border-radius: 25px;
 	background-color: #1D6154;
@@ -257,9 +260,19 @@ flex-wrap: wrap;
 	font-family: 'Syne';
 	font-size: 16px;
 	width: 237px;
+	margin-bottom: 5%;
 }
 .suppression{
 		color: #D65353;
 		background: none;
 		border: none;
 } 
+
+/* Modal 2*/
+
+.newphoto{
+	display: flex;
+	flex-direction: column;
+	background: #E8F1F6;
+	
+}

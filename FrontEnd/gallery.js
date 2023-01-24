@@ -24,18 +24,16 @@ function genererArticles(articles) {
     galleryElement.appendChild(nomElement);
 
     const galleryEditor = document.querySelector(".galleryeditor");
+    const editorElement = document.createElement("editor")
     const editerTitre = document.createElement("h4");
     const cloneGallery = imageElement.cloneNode(true);
 
-    galleryEditor.appendChild(cloneGallery)
-    galleryEditor.appendChild(editerTitre)
+    var docTitle = document.getElementsByName("h4");
+    document.h4='éditer';
 
-
-   
-  }
-
-  function newFunction() {
-    return "editarticle";
+    galleryEditor.appendChild(editorElement)
+    editorElement.appendChild(cloneGallery)
+    editorElement.appendChild(editerTitre)   
   }
 }
 genererArticles(articles);

@@ -23,18 +23,19 @@ function genererArticles(articles) {
     galleryElement.appendChild(imageElement);
     galleryElement.appendChild(nomElement);
 
-    const galleryEditor = document.querySelector("#galleryeditor");
-    const EditElement = document.createElement("Editarticle");
-    const cloneGallery = imageElement.cloneNode();
-    const editer = document.createElement("h4");
+    const galleryEditor = document.querySelector(".galleryeditor");
+    const editerTitre = document.createElement("h4");
+    const cloneGallery = imageElement.cloneNode(true);
 
-    galleryEditor.appendChild(EditElement)
-    EditElement.appendChild(cloneGallery)
-    EditElement.appendChild(editer)
+    galleryEditor.appendChild(cloneGallery)
+    galleryEditor.appendChild(editerTitre)
 
-    
+
    
-   
+  }
+
+  function newFunction() {
+    return "editarticle";
   }
 }
 genererArticles(articles);
@@ -47,7 +48,7 @@ boutonTous.addEventListener("click", function () {
   const articlesNofiltre = articles.filter(function (article) {
     return article.id;
   });
-  document.querySelector("#gallery").innerHTML = "";
+  document.querySelector(".gallery").innerHTML = "";
   genererArticles(articlesNofiltre);
 });
 
@@ -59,7 +60,7 @@ boutonObjet.addEventListener("click", function () {
     return article.category.id === 1;
   });
 
-  document.querySelector("#gallery").innerHTML = "";
+  document.querySelector(".gallery").innerHTML = "";
   genererArticles(filtreObjets);
 });
 
@@ -71,7 +72,7 @@ boutonAppart.addEventListener("click", function () {
     return article.category.id === 2;
   });
 
-  document.querySelector("#gallery").innerHTML = "";
+  document.querySelector(".gallery").innerHTML = "";
   genererArticles(filtreApparts);
 });
 
@@ -83,7 +84,7 @@ boutonHotel.addEventListener("click", function () {
     return article.category.id === 3;
   });
 
-  document.querySelector("#gallery").innerHTML = "";
+  document.querySelector(".gallery").innerHTML = "";
   genererArticles(filtreHotels);
 });
 

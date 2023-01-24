@@ -6,7 +6,7 @@
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
+del, dfn, em, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
 dl, dt, dd, ol, ul, li,
@@ -62,7 +62,6 @@ header {
 section {
 	margin: 50px 0
 }
-
 h1{
 	display: flex;
 	flex-direction: column;
@@ -71,14 +70,12 @@ h1{
 	font-weight: 800;
 	color: #B1663C
 }
-
 h1 > span {
 	font-family: 'Work Sans';
 	font-size:10px;
 	letter-spacing: 0.1em;
 ;
 }
-
 h2{
 	font-family: 'Syne';
 	font-weight: 700;
@@ -109,14 +106,27 @@ li:hover {
 	margin: auto;
 	width: 80%;
 }
-
 #introduction article {
 	flex: 1
 }
 #introduction h2 {
 	margin-bottom: 1em;
 }
-
+input[type="submit"]{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px ;
+}
+footer nav ul {
+	display: flex;
+	justify-content: flex-end;
+	margin: 2em
+}
 #introduction p {
 	margin-bottom: 0.5em;
 }
@@ -125,17 +135,16 @@ li:hover {
 	margin-bottom: 1em;
 }
 .gallery {
-	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-column-gap: 20px;
 	grid-row-gap: 20px;
 }
-
 .gallery img {
 	width: 100%;
 }
 
+/* page Login */
 #boxlog, #contact {
 	width: 50%;
 margin: auto;
@@ -156,7 +165,9 @@ margin: auto;
 	display: flex;
 	flex-direction: column;
 }
-
+#boxlog a {
+	color : black;
+}
 #boxlog input, #contact input {
 	height: 50px;
 	font-size: 1.2em;
@@ -169,23 +180,6 @@ margin: auto;
 #contact textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-}
-
-input[type="submit"]{
-	font-family: 'Syne';
-	font-weight: 700;
-	color: white;
-	background-color: #1D6154;
-	margin : 2em auto ;
-	width: 180px;
-	text-align: center;
-	border-radius: 60px ;
-}
-
-footer nav ul {
-	display: flex;
-	justify-content: flex-end;
-	margin: 2em
 }
 /*Mise en place du filtre*/
 .filtre {
@@ -212,13 +206,16 @@ footer nav ul {
 	background-color: #1D6154;
 	color: white;
 }
-#boxlog a {
-	color : black;
-}
-
 /* Mise en place de la modal*/
-
-.modal, .modal2 {
+.fermer{
+	display: flex;
+	justify-content: flex-end;
+	background: none;
+	border: none;
+	margin: 1%;
+	font-size: large ;
+}
+.modal {
         position: fixed;
         display: flex;
 		align-items: center;
@@ -229,58 +226,40 @@ footer nav ul {
         height: 100%;
         background: rgba(0, 0, 0, .8);
 }
-
 h3{
 	font-size: 26px;
 	text-align: center;
 	margin-top: 20px;
 }
-
 .modal-wrapper{
-	width: 630px;
-    height: 730px;
+	width: 95%;
+    height: 95%;
     background-color: white;
     border-radius: 25px;
     display: flex;
-    text-align: center;
-    align-items: center;
     flex-direction: column;
-    justify-content: space-evenly;
+;
+}
+.galleryeditor{
+display : flex;
+flex-wrap: wrap;
 }
 
-.photomodal{
-	display: flex;
-	height: 104px;
-	width: 78px;
-}
-
-#galleryeditor{
-display: flex;
-
-}
-
-.editarticle img{
-	width: 50px;
-	height: 50px;
+.galleryeditor img{
+	width: 100px;
+	height: 100px;
 }
 
 .btnphotomodal2{
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	border-radius: 25px;
 	background-color: #1D6154;
 	color: white;
-	text-decoration: none;
 	font-family: 'Syne';
 	font-size: 16px;
-	height: 36px ;
 	width: 237px;
-	
 }
-
 .suppression{
 		color: #D65353;
 		background: none;
 		border: none;
-}
+} 

@@ -1,10 +1,9 @@
-// Récupération des cartes depuis API
+// Récupération des photos depuis API
 const works = await fetch("http://localhost:5678/api/works");
 const articles = await works.json();
-const categories = await fetch("http://localhost:5678/api/categories");
-const filtres = await categories.json();
 
-//générer la gallerie
+
+//générer la gallerie + affichage des photos dans la modal
 function genererArticles(articles) {
   for (let i = 0; i < articles.length; i++) {
     const article = articles[i];
@@ -23,13 +22,11 @@ function genererArticles(articles) {
     galleryElement.appendChild(imageElement);
     galleryElement.appendChild(nomElement);
 
+//clone du des images pour la modale
     const galleryEditor = document.querySelector(".galleryeditor");
     const editorElement = document.createElement("editor")
     const editerTitre = document.createElement("h4");
     const cloneGallery = imageElement.cloneNode(true);
-
-    var docTitle = document.getElementsByName("h4");
-    document.h4='éditer';
 
     galleryEditor.appendChild(editorElement)
     editorElement.appendChild(cloneGallery)
@@ -94,8 +91,6 @@ const openModal = async function (e) {
   e.preventDefault()
   modal = document.querySelector(e.target.getAttribute('href'))
   modal.style.display = null
-  modal.removeAttribute('aria-hidden')
-  modal.setAttribute('aria-modal', 'true')
   modal.addEventListener('click', closeModal)
   modal.querySelector('.js-modal-close').addEventListener('click', closeModal)
   modal.querySelector('.js-modal-stop').addEventListener('click', stopPropagation)
@@ -104,12 +99,9 @@ const closeModal = function(e){
   if (modal === null) return
   e.preventDefault()
   modal.style.display = "none"
-  modal.setAttribute('aria-hidden','true')
-  modal.removeAttribute('aria-modal')
   modal.removeEventListener('click', closeModal)
   modal.querySelector('.js-modal-close').removeEventListener('click', closeModal)
   modal.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation)
-  modal.querySelector('.js-modal-close').removeEventListener('click', boutonModal2)
   modal = null
 }
 const stopPropagation = function (e){
@@ -124,7 +116,7 @@ window.addEventListener('keydown', function (e){
   }
 })
 
-// Créer la modale 2
+
 
 
 //Ajouter des Elements dans la modale 2

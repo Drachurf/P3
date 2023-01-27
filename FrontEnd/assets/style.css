@@ -175,7 +175,7 @@ margin: auto;
 #boxlog a {
 	color : black;
 }
-#boxlog input, #contact input {
+#boxlog input, #contact input, .addimagechoice {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
@@ -213,6 +213,11 @@ margin: auto;
 	background-color: #1D6154;
 	color: white;
 }
+
+/*.connecte{
+	display: none;
+}*/
+
 /* Modal */
 .modal {
         position: fixed;
@@ -227,15 +232,15 @@ margin: auto;
 }
 .modal-wrapper{
 	width: 630px;
-	height: 731px;
+	height: 95%;
     background-color: white;
     border-radius: 25px;
     display: flex;
     flex-direction: column;
 	align-items: center;
+	justify-content: space-around;
 }
 .fermer{
-	margin: 2%;
 	font-size: large ;
 	background: none;
 	border: none;
@@ -252,13 +257,30 @@ flex-wrap: wrap;
 margin: 0px 8%;
 gap : 7px;
 }
+
 .galleryeditor img{
-	width: 100px;
+	width: 20px ;
+}
+
+.fa-solid.fa-up-down-left-right{
+	z-index: 1;
+	position: fixed;
+	margin-left: 65px;
+	margin-top : 4px;
+}
+
+.fa-solid.fa-trash-can {
+	width: 9px;
+	height: 9px;
+	z-index: 1;
+	position: fixed;
+	margin-left: 85px;
+	margin-top : 4px;
 }
 hr{
 	color:#B3B3B3;
 	width: 85%;
-	margin: 5%;
+	margin: 2%;
 }
 .btnphotomodal2{
 	display: flex;
@@ -270,20 +292,36 @@ hr{
 	font-size: 16px;
 	width: 237px;
 	height: 36px;
-	margin-bottom: 5%;
 	text-decoration: none;
-
+	align-items: center;
 }
+
 .suppression{
 		color: #D65353;
 		background: none;
 		border: none;
 } 
 /* Modal 2*/
+.navmodal{
+	display: flex;
+	align-items: center;
+}
+.fa-solid.fa-xmark{
+	margin-top: 2% ;
+	margin-left: 550px;
+}
 .newphoto{
 	display: flex;
 	flex-direction: column;
 	background: #E8F1F6;
+	height: 169px;
+	width: 420px;
+	align-items: center;
+    justify-content: space-evenly;
+}
+.fa-solid.fa-image{
+	font-size: 58px;
+	position: relative;
 }
 .modifier, .modifier1, .modifier2{
 	width: 100px; 
@@ -302,27 +340,48 @@ hr{
 	display : flex;
 	justify-content: center;
 }
+.addimagechoice{
+	width: 420px;
+	height: 51px;
+}
 
+#btnvalider{
+	width: 237px;
+height: 36px;
+background: #A7A7A7;
+border-radius: 60px;
+	border: none;
+	color: white;
+	margin-bottom: 2%;
+}
+/* Addfiles */
 .upload-btn-wrapper {
 	position: relative;
 	overflow: hidden;
 	display: inline-block;
-  }
-  
-  .btnaddphoto {
-	border: 2px solid gray;
-	color: gray;
-	background-color: white;
-	padding: 8px 20px;
-	border-radius: 8px;
-	font-size: 20px;
-	font-weight: bold;
-  }
-  
-  .upload-btn-wrapper input[type=file] {
+}
+.upload-btn-wrapper p{
+	display: flex;
+ justify-content: center;
+}
+.montrer{
+	display: none;
+}
+.blah{
+	width: 129px;
+	height: 100%;
+}
+.btnaddphoto {
+	width: 173px;
+	height: 36px;
+	background: #CBD6DC;
+	border-radius: 50px;
+	border: none;
+}
+.upload-btn-wrapper input[type=file] {
 	font-size: 100px;
 	position: absolute;
 	left: 0;
 	top: 0;
 	opacity: 0;
-  }
+}

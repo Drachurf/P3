@@ -15,7 +15,9 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
-	<script type="module" src="gallery.js"> </script>
+	<script type="module" src="gallery.js">
+
+	</script>
 </head>
 <body>
 	<div class="barrepub connecte"><img src="assets/icons/modeedition.png" widht="40px" height="35px"> <button class="publier">Publier les changements</button></div>
@@ -50,42 +52,51 @@
 	
 	<!-- Mise en place de la modale-->
     <aside> 
-		<div id="modal1" class="modal" role="dialog" style="display:true">
+		<div id="modal1" class="modal" role="dialog" style="display:none">
 			<div class="modal-wrapper js-modal-stop">
-				<button class="js-modal-close fermer">X</button>
+				<button class="js-modal-close fermer"><i class="fa-solid fa-xmark"></i></button>
 				<h3>Galerie Photo</h3>
 				<!-- Photo modal -->
-				<div class="galleryeditor"></div>
-					<hr/> 
-					<a href="#modal2" class="btnphotomodal2">Ajouter photo</a>
-					<button class="suppression">Supprimer la galerie</button>
+				<div class="galleryeditor">
+					<i class="fa-solid fa-up-down-left-right"></i>
+					<i class="fa-solid fa-trash-can"></i>
+				</div>
+				<hr/> 
+				<a href="#modal2" class="btnphotomodal2">Ajouter photo</a>
+				<button class="suppression">Supprimer la galerie</button>
 			</div>
 		</div>
 
 		<!-- modale 2-->
 		<div id="modal2" class="modal" role="dialog"  style="display:none;">
 			<div class="modal-wrapper js-modal-stop">
-				<div class="navmodal"> <a href="#modal1" class="return">retour</a> 
-						<button class="js-modal-close fermer">X</button>
+				<div class="navmodal"> 
+						<a href="#modal1"><i class="fa-solid fa-arrow-left"></i></a> 
+						<button class="js-modal-close fermer"><i class="fa-solid fa-xmark"></i></button>
 				</div>
 				<h3>Ajout Photo</h3>
 					<div class="newphoto">
-						<img src="#" alt="#" name="imageUrl">
-						<div class="upload-btn-wrapper">
-							<button class="btnaddphoto">+ Ajouter photo</button>
-							<input type="file" name="myfile"/>
-						  </div>
-						<p>jpg, png : 4mo max</p>
+						<div class="montrer"><img class="blah" src="#" alt=""/></div>
+						<i class="fa-solid fa-image apercu"></i>
+						<div class="upload-btn-wrapper apercu">
+								<input type="file" name="myfile" id="imgInp" accept="image/png, image/jpeg, image/jpg" required/>
+								<button  class="btnaddphoto">+ Ajouter photo</button>
+								<p>jpg, png : 4mo max</p>
+						</div>
+						
 					</div>
-					Titre <br>
-					<input type="text" name="title"><br>
-					<label>Catégorie</label><br>
-					<select name="categoryId">
+					<div><label>Titre</label><br>
+					<input class="addimagechoice" type="text" name="title" required></div><br>
+					<div><label>Catégorie</label><br>
+					<select class="addimagechoice" name="categoryId" required>
+						<option value="null"></option>
 						<option value="Id1">Objets</option>
 						<option value="Id2">Appartements</option>
     					<option value="Id3">Hotels & restaurants</option>
-					</select><br><hr/>
-					<button class="ajout-photo" id="btnvalider">Valider</button>
+					</select></div>
+					<br>
+					<hr/>
+					<input id="btnvalider" type="submit" value="Valider">
 			</div>
 		</div>
 	</aside> 

@@ -27,21 +27,27 @@ function genererArticles(articles) {
     const editImage = document.createElement("img");
         editImage.src = article.imageUrl;
         editImage.crossOrigin = "anonymous";
-    const editerLogo = document.createElement("logodelete");
-        editerLogo.imageUrl = "FrontEnd/assets/images/abajour-tahina.png";
-    const editerTitre = document.createElement("h4");
+    const divlogo = document.createElement("divlogo");
+    const editerLogo = document.createElement("img");
+      editerLogo.src = "assets/icons/trash.svg"
+        const editerTitre = document.createElement("h4");
         editerTitre.innerHTML = "éditer"
     
-        
 
     galleryEditor.appendChild(editorElement)
     editorElement.appendChild(editImage)
-    editorElement.appendChild(editerLogo)
+    editorElement.appendChild(divlogo)
+    divlogo.appendChild(editerLogo)
     editorElement.appendChild(editerTitre)   
+
     console.log(editerLogo);
   }
 }
 genererArticles(articles);
+
+let img = new Image();   // Crée un nouvel élément Image
+img.src = 'assets/icons/trash.svg'; // Définit le chemin vers sa source
+
 
 
 // filtre TOUS
@@ -120,30 +126,37 @@ window.addEventListener('keydown', function (e){
   }
 })
 
+//Aperçu de la photo
+const blah = document.querySelector(".blah")
+const apercu  = document.querySelector(".apercu")
+const montrer = document.querySelector(".montrer")
 
-
-
+imgInp.onchange = evt => {
+  const [file] = imgInp.files
+  if (file) {
+    blah.src = URL.createObjectURL(file)
+    montrer.style.display = "block"
+    apercu.style.display = "none"
+  }
+}
 //Ajouter des Elements dans la modale 2
 export function ajoutListenerAjoutPhoto() {
-  const formulairePhoto = document.querySelector(".ajout-photo");
+  const formulairePhoto = document.getElementById("btnvalider");
   formulairePhoto.addEventlistener("submit", function (e) {
     e.preventDefault();
 
-// Ajouter des photos
     const ajoutPhoto = {
-      photoId: parseInt(e.target.querySelector("[name=id]").value),
-      imageUrl: parseInt(e.target.querySelector("[name=imageUrl]").value),
+      imageUrl: parseInt(e.target.querySelector("[name=myfile]").value),
       title: parseInt(e.target.querySelector("[name=title]").value),
       categoryId: parseInt(e.target.querySelector("[name=categoryId]").value),
       };
-      const chargeUtile = JSON.stringify(ajout);
+      const chargeUtile = JSON.stringify(ajoutPhoto);
 
       fetch("http://localhost:5678/api/works"), {
         method: "POST",
         headers: {"Content-Type": "multipart/form-data"},
         body: chargeUtile
       }
-
   })
-  console.log(ajoutPhoto);
+
 }

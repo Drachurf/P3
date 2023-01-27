@@ -26,10 +26,12 @@ function genererArticles(articles) {
     const galleryEditor = document.querySelector(".galleryeditor");
     const editorElement = document.createElement("editor")
     const editerTitre = document.createElement("h4");
-    const cloneGallery = imageElement.cloneNode(true);
+    const Editimage = document.createElement("img");
+    Editimage.src = article.imageUrl;
+    Editimage.crossOrigin = "anonymous";
 
     galleryEditor.appendChild(editorElement)
-    editorElement.appendChild(cloneGallery)
+    editorElement.appendChild(Editimage)
     editorElement.appendChild(editerTitre)   
   }
 }
@@ -49,7 +51,6 @@ boutonTous.addEventListener("click", function () {
 
 // Filtres Objet id: 1 = objet
 const boutonObjet = document.querySelector("#btnobjet");
-
 boutonObjet.addEventListener("click", function () {
   const filtreObjets = articles.filter(function (article) {
     return article.category.id === 1;
@@ -61,7 +62,6 @@ boutonObjet.addEventListener("click", function () {
 
 // Filtres Appartement id: 2
 const boutonAppart = document.querySelector("#btnappart");
-
 boutonAppart.addEventListener("click", function () {
   const filtreApparts = articles.filter(function (article) {
     return article.category.id === 2;
@@ -73,7 +73,6 @@ boutonAppart.addEventListener("click", function () {
 
 // Filtres Hôtel id: 3
 const boutonHotel = document.querySelector("#btnhotel");
-
 boutonHotel.addEventListener("click", function () {
   const filtreHotels = articles.filter(function (article) {
     return article.category.id === 3;

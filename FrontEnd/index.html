@@ -65,13 +65,16 @@
 		<!-- modale 2-->
 		<div id="modal2" class="modal" role="dialog"  style="display:none;">
 			<div class="modal-wrapper js-modal-stop">
-				<div class="navmodal" ><button class="return">retour</button> 
+				<div class="navmodal" ><a href="#modal1" class="return">retour</button> 
 						<button class="js-modal-close fermer">X</button>
 				</div>
 				<h3>Ajout Photo</h3>
 					<div class="newphoto">
 						<img src="#" alt="#" name="imageUrl">
-						<input value="+ Ajouter photo">
+						<div class="upload-btn-wrapper">
+							<button class="btnaddphoto">+ Ajouter photo</button>
+							<input type="file" name="myfile" />
+						  </div>
 						<p>jpg, png : 4mo max</p>
 					</div>
 					Titre <br>

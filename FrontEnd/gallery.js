@@ -2,7 +2,6 @@
 const works = await fetch("http://localhost:5678/api/works");
 const articles = await works.json();
 
-
 //générer la gallerie + affichage des photos dans la modal
 function genererArticles(articles) {
   for (let i = 0; i < articles.length; i++) {
@@ -22,21 +21,27 @@ function genererArticles(articles) {
     galleryElement.appendChild(imageElement);
     galleryElement.appendChild(nomElement);
 
-//clone du des images pour la modale
+//Mise en place de la modale
     const galleryEditor = document.querySelector(".galleryeditor");
     const editorElement = document.createElement("editor")
+    const editImage = document.createElement("img");
+        editImage.src = article.imageUrl;
+        editImage.crossOrigin = "anonymous";
+    const editerLogo = document.createElement("logodelete");
+        editerLogo.imageUrl = "FrontEnd/assets/images/abajour-tahina.png";
     const editerTitre = document.createElement("h4");
-    const Editimage = document.createElement("img");
-    Editimage.src = article.imageUrl;
-    Editimage.crossOrigin = "anonymous";
+        editerTitre.innerHTML = "éditer"
+    
+        
 
     galleryEditor.appendChild(editorElement)
-    editorElement.appendChild(Editimage)
+    editorElement.appendChild(editImage)
+    editorElement.appendChild(editerLogo)
     editorElement.appendChild(editerTitre)   
+    console.log(editerLogo);
   }
 }
 genererArticles(articles);
-
 
 
 // filtre TOUS

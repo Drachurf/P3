@@ -25,30 +25,32 @@ function genererArticles(articles) {
     const galleryEditor = document.querySelector(".galleryeditor");
     const editorElement = document.createElement("editor")
     const editImage = document.createElement("img");
-        editImage.src = article.imageUrl;
-        editImage.crossOrigin = "anonymous";
+      editImage.src = article.imageUrl;
+      editImage.crossOrigin = "anonymous";
     const divlogo = document.createElement("divlogo");
     const editerLogo = document.createElement("img");
+    //Logo Trash sur les images pour delete
       editerLogo.src = "assets/icons/trash.svg"
-        const editerTitre = document.createElement("h4");
-        editerTitre.innerHTML = "éditer"
+      editerLogo.style.width = "15px"
+      editerLogo.style.height = "15px"
+      editerLogo.style.zIndex = 1
+      editerLogo.style.position = "fixed"
+      editerLogo.style.marginLeft = "-20px"
+      editerLogo.style.marginTop = "4px"
+      editerLogo.style.background= "white"
+      editerLogo.setAttribute ('id', 'trash')
+    const editerTitre = document.createElement("h4");
+      editerTitre.innerHTML = "éditer"
     
-
     galleryEditor.appendChild(editorElement)
     editorElement.appendChild(editImage)
     editorElement.appendChild(divlogo)
     divlogo.appendChild(editerLogo)
     editorElement.appendChild(editerTitre)   
 
-    console.log(editerLogo);
   }
 }
 genererArticles(articles);
-
-let img = new Image();   // Crée un nouvel élément Image
-img.src = 'assets/icons/trash.svg'; // Définit le chemin vers sa source
-
-
 
 // filtre TOUS
 const boutonTous = document.querySelector("#btntous");
@@ -126,7 +128,7 @@ window.addEventListener('keydown', function (e){
   }
 })
 
-//Aperçu de la photo
+//Aperçu de la photo avant de l'ajouter.
 const blah = document.querySelector(".blah")
 const apercu  = document.querySelector(".apercu")
 const montrer = document.querySelector(".montrer")
@@ -139,24 +141,74 @@ imgInp.onchange = evt => {
     apercu.style.display = "none"
   }
 }
+
+
+
+// supprimer des éléments 
+
+
+document.getElementById("trash").addEventListener('click', deletePost);
+function deletePost(articles){
+  const id = articles.category.id
+  console.log(id);
+// définir la const pour sélectionner l'id ! faut-il mettre un $avant l'id dans le fetch ? 
+ /* fetch('http://localhost:5678/api/works/${id}',{
+    method: 'DELETE',
+    body : null,
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8", 
+    }
+  }).then((response) =>response.json())
+  .then((json)=> alert('Document supprimé') );
+  */}
+  
+ 
+  
+
+
 //Ajouter des Elements dans la modale 2
+/*const formulairePhoto = document.getElementById("#btnvalider");
+formulairePhoto.addEventlistener("submit", function (e) {
+  e.preventDefault();
+  async function createNewProfile(profile) {
+  const formData = new FormData();
+  formData.append('first_name', profile.firstName);
+  formData.append('last_name', profile.lastName);
+  formData.append('email', profile.email);
+
+  const response = await fetch('http://localhost:5678/api/works', {
+    method: 'POST',
+    body: formData
+  });
+  return await response.json();
+}
+
+createNewProfile(profile)
+ .then((json) => {
+     // handle success
+  })
+ .catch(error => error);
+})
 export function ajoutListenerAjoutPhoto() {
-  const formulairePhoto = document.getElementById("btnvalider");
+  const formulairePhoto = document.getElementById("#btnvalider");
   formulairePhoto.addEventlistener("submit", function (e) {
     e.preventDefault();
 
     const ajoutPhoto = {
-      imageUrl: parseInt(e.target.querySelector("[name=myfile]").value),
+      imageUrl: parseInt(e.target.querySelector("[name=imageUrl]").value),
       title: parseInt(e.target.querySelector("[name=title]").value),
       categoryId: parseInt(e.target.querySelector("[name=categoryId]").value),
       };
-      const chargeUtile = JSON.stringify(ajoutPhoto);
-
+      
       fetch("http://localhost:5678/api/works"), {
         method: "POST",
-        headers: {"Content-Type": "multipart/form-data"},
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
         body: chargeUtile
       }
+      const chargeUtile = JSON.stringify(ajoutPhoto);
   })
-
-}
+        .then(response => response.json())
+        .then(response => console.log(JSON.stringify(response)))
+}*/

@@ -52,14 +52,13 @@
 	
 	<!-- Mise en place de la modale-->
     <aside> 
-		<div id="modal1" class="modal" role="dialog" style="display:none">
+		<div id="modal1" class="modal" role="dialog" style="display:true">
 			<div class="modal-wrapper js-modal-stop">
 				<button class="js-modal-close fermer"><i class="fa-solid fa-xmark"></i></button>
 				<h3>Galerie Photo</h3>
 				<!-- Photo modal -->
 				<div class="galleryeditor">
 					<i class="fa-solid fa-up-down-left-right"></i>
-					<i class="fa-solid fa-trash-can"></i>
 				</div>
 				<hr/> 
 				<a href="#modal2" class="btnphotomodal2">Ajouter photo</a>
@@ -75,15 +74,15 @@
 						<button class="js-modal-close fermer"><i class="fa-solid fa-xmark"></i></button>
 				</div>
 				<h3>Ajout Photo</h3>
+				<form method="post" url="http://localhost:5678/api/works">
 					<div class="newphoto">
 						<div class="montrer"><img class="blah" src="#" alt=""/></div>
 						<i class="fa-solid fa-image apercu"></i>
 						<div class="upload-btn-wrapper apercu">
-								<input type="file" name="myfile" id="imgInp" accept="image/png, image/jpeg, image/jpg" required/>
+								<input type="file" name="imageUrl" id="imgInp" accept="image/png, image/jpeg, image/jpg" required/>
 								<button  class="btnaddphoto">+ Ajouter photo</button>
 								<p>jpg, png : 4mo max</p>
 						</div>
-						
 					</div>
 					<div><label>Titre</label><br>
 					<input class="addimagechoice" type="text" name="title" required></div><br>
@@ -97,7 +96,7 @@
 					<br>
 					<hr/>
 					<input id="btnvalider" type="submit" value="Valider">
-			</div>
+				</form>
 		</div>
 	</aside> 
 		<!--mise en place du filtre-->

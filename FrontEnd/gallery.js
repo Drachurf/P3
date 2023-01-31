@@ -21,33 +21,32 @@ function genererArticles(articles) {
     galleryElement.appendChild(imageElement);
     galleryElement.appendChild(nomElement);
 
-//Mise en place de la modale
+    //Mise en place de la modale
     const galleryEditor = document.querySelector(".galleryeditor");
-    const editorElement = document.createElement("editor")
+    const editorElement = document.createElement("editor");
     const editImage = document.createElement("img");
-      editImage.src = article.imageUrl;
-      editImage.crossOrigin = "anonymous";
+    editImage.src = article.imageUrl;
+    editImage.crossOrigin = "anonymous";
     const divlogo = document.createElement("divlogo");
     const editerLogo = document.createElement("img");
     //Logo Trash sur les images pour delete
-      editerLogo.src = "assets/icons/trash.svg"
-      editerLogo.style.width = "15px"
-      editerLogo.style.height = "15px"
-      editerLogo.style.zIndex = 1
-      editerLogo.style.position = "fixed"
-      editerLogo.style.marginLeft = "-20px"
-      editerLogo.style.marginTop = "4px"
-      editerLogo.style.background= "white"
-      editerLogo.setAttribute ('id', 'trash')
+    editerLogo.src = "assets/icons/trash.svg";
+    editerLogo.style.width = "15px";
+    editerLogo.style.height = "15px";
+    editerLogo.style.zIndex = 1;
+    editerLogo.style.position = "fixed";
+    editerLogo.style.marginLeft = "-20px";
+    editerLogo.style.marginTop = "4px";
+    editerLogo.style.background = "white";
+    editerLogo.setAttribute("id", "trash");
     const editerTitre = document.createElement("h4");
-      editerTitre.innerHTML = "éditer"
-    
-    galleryEditor.appendChild(editorElement)
-    editorElement.appendChild(editImage)
-    editorElement.appendChild(divlogo)
-    divlogo.appendChild(editerLogo)
-    editorElement.appendChild(editerTitre)   
+    editerTitre.innerHTML = "éditer";
 
+    galleryEditor.appendChild(editorElement);
+    editorElement.appendChild(editImage);
+    editorElement.appendChild(divlogo);
+    divlogo.appendChild(editerLogo);
+    editorElement.appendChild(editerTitre);
   }
 }
 genererArticles(articles);
@@ -95,120 +94,117 @@ boutonHotel.addEventListener("click", function () {
   genererArticles(filtreHotels);
 });
 
+// mode edition
+const connecte = document.getElementsByClassName("connecte");
+const token = localStorage.getItem("token");
+console.log(connecte);
+
 const boutonModal2 = document.querySelector("#btnphotomodal2");
+const retour = document.querySelector('#retour')
 
 // Modale
-let modal = null
+
+let modal = null;
 const openModal = async function (e) {
-  e.preventDefault()
-  modal = document.querySelector(e.target.getAttribute('href'))
-  modal.style.display = null
-  modal.addEventListener('click', closeModal)
-  modal.querySelector('.js-modal-close').addEventListener('click', closeModal)
-  modal.querySelector('.js-modal-stop').addEventListener('click', stopPropagation)
-}
-const closeModal = function(e){
-  if (modal === null) return
-  e.preventDefault()
-  modal.style.display = "none"
-  modal.removeEventListener('click', closeModal)
-  modal.querySelector('.js-modal-close').removeEventListener('click', closeModal)
-  modal.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation)
-  modal = null
-}
-const stopPropagation = function (e){
-    e.stopPropagation()
-}
-document.querySelectorAll('.js-modal').forEach(a=> {
-  a.addEventListener('click', openModal)
+  e.preventDefault();
+  modal = document.querySelector(e.target.getAttribute("href"));
+  modal.style.display = null;
+  modal.querySelector(".js-modal-stop").addEventListener("click", stopPropagation);
+};
+const closeModal = function (e) {
+  if (modal === null) return;
+  e.preventDefault();
+  modal.style.display = "none";
+  modal.querySelectorAll(".js-modal-stop").removeEventListener("click", stopPropagation);
+  modal = null;
+};
+
+boutonModal2.addEventListener("click", function () {
+  document.querySelector("#modal2").style.display = null;
+  document.querySelector("#modal1").style.display = "none";
+});
+retour.addEventListener("click", function (){
+  document.querySelector("#modal1").style.display = null
+  document.querySelector("#modal2").style.display = "none";
 })
-window.addEventListener('keydown', function (e){
-  if (e.key === "Escape" || e.key === "Esc"){
-    closeModal(e)
+
+const closeAll = document.querySelectorAll(".js-modal-close");
+
+closeAll.forEach(function(close) {
+    close.addEventListener("click", function() {
+      document.querySelector("#modal2").style.display = "none";
+      document.querySelector("#modal1").style.display = "none";
+    });
+});
+const stopPropagation = function (e) {
+  e.stopPropagation();
+};
+document.querySelectorAll(".js-modal").forEach((a) => {
+  a.addEventListener("click", openModal);
+});
+window.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" || e.key === "Esc") {
+    closeModal(e);
   }
-})
+});
 
 //Aperçu de la photo avant de l'ajouter.
-const blah = document.querySelector(".blah")
-const apercu  = document.querySelector(".apercu")
-const montrer = document.querySelector(".montrer")
+const blah = document.querySelector(".blah");
+const apercu = document.querySelector(".apercu");
+const montrer = document.querySelector(".montrer");
 
-imgInp.onchange = evt => {
-  const [file] = imgInp.files
+imgInp.onchange = (evt) => {
+  const [file] = imgInp.files;
   if (file) {
-    blah.src = URL.createObjectURL(file)
-    montrer.style.display = "block"
-    apercu.style.display = "none"
+    blah.src = URL.createObjectURL(file);
+    montrer.style.display = "block";
+    apercu.style.display = "none";
   }
-}
+};
 
-
-
-// supprimer des éléments 
-
-
-document.getElementById("trash").addEventListener('click', deletePost);
-function deletePost(articles){
-  const id = articles.category.id
-  console.log(id);
-// définir la const pour sélectionner l'id ! faut-il mettre un $avant l'id dans le fetch ? 
- /* fetch('http://localhost:5678/api/works/${id}',{
-    method: 'DELETE',
-    body : null,
+// supprimer des éléments
+document.getElementById("trash").addEventListener("click", deletePost);
+function deletePost(articles) {
+  // définir la const pour sélectionner l'id ! faut-il mettre un $avant l'id dans le fetch ?
+  fetch("http://localhost:5678/api/works/${id}", {
+    method: "DELETE",
+    body: null,
     headers: {
-      "Content-Type": "application/json; charset=UTF-8", 
-    }
-  }).then((response) =>response.json())
-  .then((json)=> alert('Document supprimé') );
-  */}
-  
- 
-  
-
+      "Content-Type": "application/json; charset=UTF-8",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => alert("Document supprimé"));
+}
 
 //Ajouter des Elements dans la modale 2
-/*const formulairePhoto = document.getElementById("#btnvalider");
-formulairePhoto.addEventlistener("submit", function (e) {
+const formulairePhoto = document.querySelector("#btnvalider");
+
+formulairePhoto.addEventListener("submit", function (e) {
   e.preventDefault();
-  async function createNewProfile(profile) {
-  const formData = new FormData();
-  formData.append('first_name', profile.firstName);
-  formData.append('last_name', profile.lastName);
-  formData.append('email', profile.email);
 
-  const response = await fetch('http://localhost:5678/api/works', {
-    method: 'POST',
-    body: formData
-  });
-  return await response.json();
-}
+  const ajoutPhoto = new ajoutPhoto(formulairePhoto);
+  ajoutPhoto.append(
+    "image",
+    e.target.querySelector("[name=imageUrl]").files[0]
+  );
+  ajoutPhoto.append("title", e.target.querySelector("[name=title]").value);
+  ajoutPhoto.append(
+    "category",
+    e.target.querySelector("[name=category]").value
+  );
 
-createNewProfile(profile)
- .then((json) => {
-     // handle success
-  })
- .catch(error => error);
-})
-export function ajoutListenerAjoutPhoto() {
-  const formulairePhoto = document.getElementById("#btnvalider");
-  formulairePhoto.addEventlistener("submit", function (e) {
-    e.preventDefault();
+  console.log(ajoutPhoto);
 
-    const ajoutPhoto = {
-      imageUrl: parseInt(e.target.querySelector("[name=imageUrl]").value),
-      title: parseInt(e.target.querySelector("[name=title]").value),
-      categoryId: parseInt(e.target.querySelector("[name=categoryId]").value),
-      };
-      
-      fetch("http://localhost:5678/api/works"), {
-        method: "POST",
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        },
-        body: chargeUtile
-      }
-      const chargeUtile = JSON.stringify(ajoutPhoto);
-  })
-        .then(response => response.json())
-        .then(response => console.log(JSON.stringify(response)))
-}*/
+  fetch("http://localhost:5678/api/works"),
+    {
+      method: "POST",
+      headers: {
+        accepte: "application/json",
+        "Content-Type": "application/json; charset=UTF-8",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: ajoutPhoto,
+    };
+});

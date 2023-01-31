@@ -306,7 +306,7 @@ footer nav ul {
 
 /*espace d'édition*/
 /*.connecte {
-  display: none;
+display: none;
 }*/
 .modifier,
 .modifier1,
@@ -347,7 +347,7 @@ footer nav ul {
 }
 .fermer {
   font-size: large;
-  background: none;
+  width: 23px;
   border: none;
 }
 h3 {

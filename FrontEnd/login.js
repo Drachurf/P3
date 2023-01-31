@@ -3,6 +3,7 @@ const form = {
   password: document.querySelector("#pass"),
   submit: document.querySelector("#btnconnection"),
 };
+
 let button = form.submit.addEventListener("click", (e) => {
   e.preventDefault();
 
@@ -18,10 +19,13 @@ let button = form.submit.addEventListener("click", (e) => {
     }),
   })
     .then((response) => response.json())
+    
     .then((data) => {
       if (data.error) {
         alert("Erreur dans l’identifiant ou le mot de passe");
       } else {
+        const token = localStorage.getItem("token")
+        localStorage.getItem(token);
         location.replace(
           "index.html"
         );

@@ -305,9 +305,9 @@ footer nav ul {
 }
 
 /*espace d'édition*/
-/*.connecte {
-display: none;
-}*/
+.connecte {
+display: none ;
+}
 .modifier,
 .modifier1,
 .modifier2 {

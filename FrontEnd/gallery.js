@@ -94,16 +94,26 @@ boutonHotel.addEventListener("click", function () {
   genererArticles(filtreHotels);
 });
 
-// mode edition
-const connecte = document.getElementsByClassName("connecte");
-const token = localStorage.getItem("token");
-console.log(connecte);
 
-const boutonModal2 = document.querySelector("#btnphotomodal2");
-const retour = document.querySelector('#retour')
+
+//récupération du token 
+const token = localStorage.getItem("token");
+console.log(token);
+
+// mode edition
+const OpenConnecte = async function (e) {
+  e.preventDefault();
+  if (token === null){
+    return
+  }else{
+  connecte = docuement.getElementsByClassName(e.target.getAttribute("connecte"))
+  connecte.style.display = 'flex'
+  } 
+}
+
+
 
 // Modale
-
 let modal = null;
 const openModal = async function (e) {
   e.preventDefault();
@@ -119,17 +129,19 @@ const closeModal = function (e) {
   modal = null;
 };
 
+const boutonModal2 = document.querySelector("#btnphotomodal2");
 boutonModal2.addEventListener("click", function () {
   document.querySelector("#modal2").style.display = null;
   document.querySelector("#modal1").style.display = "none";
 });
+
+const retour = document.querySelector('#retour')
 retour.addEventListener("click", function (){
   document.querySelector("#modal1").style.display = null
   document.querySelector("#modal2").style.display = "none";
 })
 
 const closeAll = document.querySelectorAll(".js-modal-close");
-
 closeAll.forEach(function(close) {
     close.addEventListener("click", function() {
       document.querySelector("#modal2").style.display = "none";
@@ -153,7 +165,7 @@ const blah = document.querySelector(".blah");
 const apercu = document.querySelector(".apercu");
 const montrer = document.querySelector(".montrer");
 
-imgInp.onchange = (evt) => {
+imgInp.onchange = () => {
   const [file] = imgInp.files;
   if (file) {
     blah.src = URL.createObjectURL(file);
@@ -163,20 +175,22 @@ imgInp.onchange = (evt) => {
 };
 
 // supprimer des éléments
-document.getElementById("trash").addEventListener("click", deletePost);
-function deletePost(articles) {
-  // définir la const pour sélectionner l'id ! faut-il mettre un $avant l'id dans le fetch ?
-  fetch("http://localhost:5678/api/works/${id}", {
-    method: "DELETE",
-    body: null,
-    headers: {
-      "Content-Type": "application/json; charset=UTF-8",
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    },
+const trash = document.querySelectorAll("#trash")
+trash.forEach(function(trash) {
+  trash.addEventListener("click", function() {
+    //faut-il mettre un $avant l'id dans le fetch ?
+    fetch("http://localhost:5678/api/works/${id}", {
+      method: "DELETE",
+      body: null,
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+        Authorization: `Bearer ${localStorage.getItem(token)}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => alert("Document supprimé"));
   })
-    .then((response) => response.json())
-    .then((json) => alert("Document supprimé"));
-}
+});
 
 //Ajouter des Elements dans la modale 2
 const formulairePhoto = document.querySelector("#btnvalider");
@@ -185,15 +199,9 @@ formulairePhoto.addEventListener("submit", function (e) {
   e.preventDefault();
 
   const ajoutPhoto = new ajoutPhoto(formulairePhoto);
-  ajoutPhoto.append(
-    "image",
-    e.target.querySelector("[name=imageUrl]").files[0]
-  );
+  ajoutPhoto.append("image", e.target.querySelector("[name=imageUrl]").files[0]);
   ajoutPhoto.append("title", e.target.querySelector("[name=title]").value);
-  ajoutPhoto.append(
-    "category",
-    e.target.querySelector("[name=category]").value
-  );
+  ajoutPhoto.append("category", e.target.querySelector("[name=category]").value);
 
   console.log(ajoutPhoto);
 
@@ -201,7 +209,7 @@ formulairePhoto.addEventListener("submit", function (e) {
     {
       method: "POST",
       headers: {
-        accepte: "application/json",
+        'accepte': "application/json",
         "Content-Type": "application/json; charset=UTF-8",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },

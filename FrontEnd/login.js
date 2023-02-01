@@ -1,3 +1,6 @@
+
+
+
 const form = {
   email: document.querySelector("#maileuh"),
   password: document.querySelector("#pass"),
@@ -23,12 +26,13 @@ let button = form.submit.addEventListener("click", (e) => {
     .then((data) => {
       if (data.error) {
         alert("Erreur dans l’identifiant ou le mot de passe");
-      } else {
-        const token = localStorage.getItem("token")
-        localStorage.getItem(token);
+            } else {
+      // récupérer le token 
+        console.log(data);
+        localStorage.setItem("token", data.token)
         location.replace(
-          "index.html"
-        );
+"index.html"
+      );
       }
     })
     .catch((err) => {

@@ -38,7 +38,9 @@ function genererArticles(articles) {
     editerLogo.style.marginLeft = "-20px";
     editerLogo.style.marginTop = "4px";
     editerLogo.style.background = "white";
-    editerLogo.setAttribute("id", "trash");
+    editerLogo.setAttribute("class", "trash");
+    editerLogo.id = article.id;
+
     const editerTitre = document.createElement("h4");
     editerTitre.innerHTML = "éditer";
 
@@ -106,7 +108,7 @@ const OpenConnecte = async function (e) {
   if (token === null){
     return
   }else{
-  connecte = docuement.getElementsByClassName(e.target.getAttribute("connecte"))
+  connecte = document.getElementsByClassName(e.target.getAttribute("connecte"))
   connecte.style.display = 'flex'
   } 
 }
@@ -175,44 +177,48 @@ imgInp.onchange = () => {
 };
 
 // supprimer des éléments
-const trash = document.querySelectorAll("#trash")
+const trash = document.querySelectorAll(".trash")
 trash.forEach(function(trash) {
-  trash.addEventListener("click", function() {
-    //faut-il mettre un $avant l'id dans le fetch ?
-    fetch("http://localhost:5678/api/works/${id}", {
+  trash.addEventListener("click", function(e) {
+    let id = e.target.id
+    fetch(`http://localhost:5678/api/works/${id}`, {
       method: "DELETE",
       body: null,
       headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
         "Content-Type": "application/json; charset=UTF-8",
-        Authorization: `Bearer ${localStorage.getItem(token)}`,
-      },
+      }
     })
-      .then((response) => response.json())
-      .then((json) => alert("Document supprimé"));
+      .then(alert('Document supprimé'))
   })
 });
 
+
+
+
 //Ajouter des Elements dans la modale 2
-const formulairePhoto = document.querySelector("#btnvalider");
-
-formulairePhoto.addEventListener("submit", function (e) {
+const formulairePhoto = document.getElementById('btnvalider')
+console.log(formulairePhoto);
+formulairePhoto.addEventListener("click", function (e) {
   e.preventDefault();
+  const someData = {
+    image: document.getElementById('imgInp').files[0],
+    title: document.getElementById('title').value,
+    category: document.getElementById('category').value,
+   }
+  console.log(someData);
 
-  const ajoutPhoto = new ajoutPhoto(formulairePhoto);
-  ajoutPhoto.append("image", e.target.querySelector("[name=imageUrl]").files[0]);
-  ajoutPhoto.append("title", e.target.querySelector("[name=title]").value);
-  ajoutPhoto.append("category", e.target.querySelector("[name=category]").value);
-
-  console.log(ajoutPhoto);
-
-  fetch("http://localhost:5678/api/works"),
-    {
-      method: "POST",
-      headers: {
-        'accepte': "application/json",
-        "Content-Type": "application/json; charset=UTF-8",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      body: ajoutPhoto,
-    };
-});
+  const postMethod = {
+    method: 'POST', 
+    headers: {
+      'accepte': "application/json",
+      "Content-Type": "application/json; charset=UTF-8",
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+     body: JSON.stringify(someData)
+   }
+   fetch("http://localhost:5678/api/works", postMethod)
+   .then(response => response.json())
+   .then(data => console.log(data)) 
+   .catch(err => console.log(err))
+  })

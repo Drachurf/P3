@@ -6,8 +6,9 @@
 
 
         ".vscode/**",
-        "Backend",
         "**/*.sass",
-        "**/*.ts"
-    ]
+        "**/*scss",
+        "**/*.ts",
+        "Backend"
+    ]  
 }

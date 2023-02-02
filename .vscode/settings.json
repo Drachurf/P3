@@ -9,6 +9,6 @@
         "**/*.sass",
         "**/*scss",
         "**/*.ts",
-        "Backend"
+        "**/Backend"
     ]  
 }

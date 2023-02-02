@@ -113,21 +113,24 @@ const OpenConnecte = async function (e) {
   } 
 }
 
-
+const modal1et2 = document.querySelectorAll("#modal1 , #modal2")
+console.log(modal1et2);
 
 // Modale
 let modal = null;
 const openModal = async function (e) {
   e.preventDefault();
-  modal = document.querySelector(e.target.getAttribute("href"));
+  modal = document.querySelector(e.target.getAttribute('href'));
   modal.style.display = null;
   modal.querySelector(".js-modal-stop").addEventListener("click", stopPropagation);
+  modal.querySelector('.js-modal-close').addEventListener("click", closeModal)
 };
 const closeModal = function (e) {
   if (modal === null) return;
   e.preventDefault();
   modal.style.display = "none";
-  modal.querySelectorAll(".js-modal-stop").removeEventListener("click", stopPropagation);
+  modal.querySelector(".js-modal-stop").removeEventListener("click", stopPropagation);
+  modal.querySelector('.js-modal-close').removeEventListener("click", closeModal)
   modal = null;
 };
 
@@ -222,3 +225,30 @@ formulairePhoto.addEventListener("click", function (e) {
    .then(data => console.log(data)) 
    .catch(err => console.log(err))
   })
+
+  /*async function addNewProject() {
+  const formData = new FormData();
+  // Ajout du fichier a l'objet FormData
+  formData.append("image", fileInput.files[0]);
+  formData.append("title", titleInputModale2.value);
+  formData.append("category", categoryInput.value);
+
+  await fetch(`http://localhost:5678/api/works`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${sessionStorage["adminToken"]}`,
+    },
+    body: formData,
+  }).then(async (response) => {
+    if (response.ok) {
+      divImageModale2.querySelector("img").remove();
+      hiddenInputModale2.value = "";
+      titleInputModale2.value = "";
+    } else {
+      console.log("error");
+      alert(
+        "Veuillez verifier que vous avez bien ajouté un Titre et une image au bon format"
+      );
+    }
+  });
+}*/ 

@@ -114,7 +114,7 @@ boutonHotel.addEventListener("click", function () {
 // mode edition
 const modal1et2 = document.querySelectorAll("#modal1 , #modal2")
 console.log(modal1et2);
-// il me manque la fermeture de la modale au click extérieur. 
+
 // Modale
 let modal = null;
 const openModal = async function (e) {
@@ -123,6 +123,7 @@ const openModal = async function (e) {
   modal.style.display = null;
   modal.querySelector(".js-modal-stop").addEventListener("click", stopPropagation);
   modal.querySelector('.js-modal-close').addEventListener("click", closeModal)
+  modal.addEventListener("click", closeModal);
 };
 const closeModal = function (e) {
   if (modal === null) return;
@@ -130,6 +131,7 @@ const closeModal = function (e) {
   modal.style.display = "none";
   modal.querySelector(".js-modal-stop").removeEventListener("click", stopPropagation);
   modal.querySelector('.js-modal-close').removeEventListener("click", closeModal)
+  modal.removeEventListener("click", closeModal);
   modal = null;
 };
 
@@ -164,6 +166,10 @@ window.addEventListener("keydown", function (e) {
   }
 });
 
+
+// Fermer la modale avec le click extérieur.
+const modal1 = document.getElementById('modal1');
+const modal2 = document.getElementById('Modal2');
 //Aperçu de la photo avant de l'ajouter.
 const blah = document.querySelector(".blah");
 const apercu = document.querySelector(".apercu");
@@ -202,25 +208,23 @@ trash.forEach(function(trash) {
 
 //Ajouter des Elements dans la modale 2
 const formulairePhoto = document.getElementById('btnvalider');
-const addImage = document.getElementById('imgInp');
+const addImage = document.querySelector('#imgInp');
 const addTitre = document.getElementById('title');
 const addCategory = document.getElementById('category');
+console.log(formulairePhoto);
 
-
-    formulairePhoto.addEventListener("click", async function (e) {
+    /*formulairePhoto.addEventListener("click", async function (e) {
       e.preventDefault();
     
-    
-    const formData = new FormData();
-        formData.append("image", addImage.files[0]);
+        const formData = new FormData();
+        formData.append("image", addImage.files[0], addImage.files[0].name);
         formData.append("title", addTitre.value);
         formData.append("category", addCategory.value);
-    
+
         await fetch(`http://localhost:5678/api/works`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
-            "Content-Type": "multipart/form-data",
 
             //ci dessus une erreur 500, si on l'enlève, nous retrouvons une erreur 400
           },
@@ -232,17 +236,17 @@ const addCategory = document.getElementById('category');
             "index.html"
                   );
         } else {
-          alert ("ca pas marche")
-          closeModal()
+          alert ("raté !")
         }
       })
-    })
+    })*/
 
-/*formulairePhoto.addEventListener("click", function (e) {
+formulairePhoto.addEventListener("click", function (e) {
   e.preventDefault();
 
   const someData = {
     image: document.getElementById('imgInp').files[0],
+    image: document.getElementById('imgInp').name[0],
     title: document.getElementById('title').value,
     category: document.getElementById('category').value,
    }
@@ -263,7 +267,7 @@ const addCategory = document.getElementById('category');
         "index.html"
               );
     } else {
-      alert ("fichier refusé, vérifier son format et sa taille")
+      alert ("raté !")
     }
   });
-}*/ 
+})

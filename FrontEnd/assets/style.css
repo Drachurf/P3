@@ -443,15 +443,19 @@ hr {
   width: 420px;
   height: 51px;
 }
+.formulaire{
+  display : flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #btnvalider {
-  display: flex;
-  justify-content: center;
   width: 237px;
   height: 36px;
   background: #a7a7a7;
   border-radius: 60px;
   border: none;
-  color: white;
+  color : white;
   margin-bottom: 2%;
 }
 /* Addfiles */

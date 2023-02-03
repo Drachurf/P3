@@ -168,6 +168,7 @@ window.addEventListener("keydown", function (e) {
 const blah = document.querySelector(".blah");
 const apercu = document.querySelector(".apercu");
 const montrer = document.querySelector(".montrer");
+const newPhoto = document.querySelector('.newphoto')
 
 imgInp.onchange = () => {
   const [file] = imgInp.files;
@@ -192,7 +193,7 @@ trash.forEach(function(trash) {
       }
     })
       .then(async (response) => {
-      newphoto.querySelector("img").remove();
+      newPhoto.querySelector("img").remove();
       (alert('Document supprimé'))
     })
   })
@@ -201,40 +202,41 @@ trash.forEach(function(trash) {
 
 //Ajouter des Elements dans la modale 2
 const formulairePhoto = document.getElementById('btnvalider');
-const newphoto = document.querySelector('.newphoto')
 const addImage = document.getElementById('imgInp');
 const addTitre = document.getElementById('title');
 const addCategory = document.getElementById('category');
 
-  formulairePhoto.onclick = async function (e) {
-    e.preventDefault();
 
-let formData = new FormData();
-    formData.append("image", addImage.files[0]);
-    formData.append("title", addTitre.value);
-    formData.append("category", addCategory.value);
+    formulairePhoto.addEventListener("click", async function (e) {
+      e.preventDefault();
+    
+    
+    const formData = new FormData();
+        formData.append("image", addImage.files[0]);
+        formData.append("title", addTitre.value);
+        formData.append("category", addCategory.value);
+    
+        await fetch(`http://localhost:5678/api/works`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            "Content-Type": "multipart/form-data",
 
-    console.log(new FormData);
-
-    await fetch(`http://localhost:5678/api/works`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-      },
-      body: formData,
+            //ci dessus une erreur 500, si on l'enlève, nous retrouvons une erreur 400
+          },
+          body: formData,
+        })
+       .then(async (response) => {
+        if (response.ok) {
+          location.replace(
+            "index.html"
+                  );
+        } else {
+          alert ("ca pas marche")
+          closeModal()
+        }
+      })
     })
-    .then(async (response) => {
-      if (response.ok) {
-
-       alert ('photo ajoutée')
-      } else {
-        console.log("error");
-        alert(
-          "Cela ne fonctionne paaaaaaaaaaaaaaaaaaaaaaaaas [(ajouter un (a) à chaque échec]"
-        );
-      }
-  })
-}
 
 /*formulairePhoto.addEventListener("click", function (e) {
   e.preventDefault();

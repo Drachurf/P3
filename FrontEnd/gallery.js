@@ -266,4 +266,4 @@ const addCategory = document.getElementById('category');
       alert ("fichier refusé, vérifier son format et sa taille")
     }
   });
-})*/ 
+}*/ 

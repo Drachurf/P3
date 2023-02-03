@@ -112,9 +112,54 @@ boutonHotel.addEventListener("click", function () {
 
 
 // mode edition
+const modal1 = document.getElementById('modal1');
+const modal2 = document.getElementById('Modal2')
 const modal1et2 = document.querySelectorAll("#modal1 , #modal2")
-console.log(modal1et2);
 
+
+/*modal1.addEventListener('click', function () {
+
+  document.querySelector('#modal-1').style.display = null;
+});
+
+// Fermer la modale 1
+modal1.addEventListener('click', function () {
+  document.querySelector('#modal-1').style.display = 'none';
+});
+
+// Fermer la modale 1 en cliquant à l'extérieur
+modal1.addEventListener('click', function (e) {
+  if (e.target === this) {
+    this.style.display = 'none';
+  }
+});*/
+
+const openModalButton = document.querySelector('.js-modal-open');
+const closeModalButton = document.querySelector('.js-modal-close');
+const modal = document.querySelector('.js-modal');
+
+console.log(openModalButton);
+
+// Écouter l'événement de clic sur le bouton pour ouvrir la modale
+openModalButton.addEventListener('click', function() {
+  modal.style.display = 'block';
+});
+
+// Écouter l'événement de clic sur le bouton pour fermer la modale
+closeModalButton.addEventListener('click', function() {
+  modal.style.display = 'none';
+});
+
+// Écouter l'événement de clic sur n'importe où en dehors de la modale pour la fermer
+window.addEventListener('click', function(event) {
+  if (event.target === modal) {
+    modal.style.display = 'none';
+  }
+});
+
+
+
+/*
 // Modale
 let modal = null;
 const openModal = async function (e) {
@@ -166,15 +211,16 @@ window.addEventListener("keydown", function (e) {
   }
 });
 
-
 // Fermer la modale avec le click extérieur.
-const modal1 = document.getElementById('modal1');
-const modal2 = document.getElementById('Modal2');
+;*/
+
+
 //Aperçu de la photo avant de l'ajouter.
 const blah = document.querySelector(".blah");
 const apercu = document.querySelector(".apercu");
 const montrer = document.querySelector(".montrer");
 const newPhoto = document.querySelector('.newphoto')
+
 
 imgInp.onchange = () => {
   const [file] = imgInp.files;
@@ -211,16 +257,15 @@ const formulairePhoto = document.getElementById('btnvalider');
 const addImage = document.querySelector('#imgInp');
 const addTitre = document.getElementById('title');
 const addCategory = document.getElementById('category');
-console.log(formulairePhoto);
 
-    /*formulairePhoto.addEventListener("click", async function (e) {
+    formulairePhoto.addEventListener("click", async function (e) {
       e.preventDefault();
     
         const formData = new FormData();
         formData.append("image", addImage.files[0], addImage.files[0].name);
         formData.append("title", addTitre.value);
         formData.append("category", addCategory.value);
-
+console.log(formData);
         await fetch(`http://localhost:5678/api/works`, {
           method: "POST",
           headers: {
@@ -239,35 +284,4 @@ console.log(formulairePhoto);
           alert ("raté !")
         }
       })
-    })*/
-
-formulairePhoto.addEventListener("click", function (e) {
-  e.preventDefault();
-
-  const someData = {
-    image: document.getElementById('imgInp').files[0],
-    image: document.getElementById('imgInp').name[0],
-    title: document.getElementById('title').value,
-    category: document.getElementById('category').value,
-   }
-  console.log(someData);
-
-  const postMethod = {
-    method: 'POST', 
-    headers: {
-      'accepte': "application/json",
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    },
-     body: JSON.stringify(someData)
-   }
-   fetch("http://localhost:5678/api/works", postMethod)
-   .then(async (response) => {
-    if (response.ok) {
-      location.replace(
-        "index.html"
-              );
-    } else {
-      alert ("raté !")
-    }
-  });
-})
+    })

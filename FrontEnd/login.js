@@ -1,6 +1,3 @@
-
-
-
 const form = {
   email: document.querySelector("#maileuh"),
   password: document.querySelector("#pass"),
@@ -21,21 +18,23 @@ let button = form.submit.addEventListener("click", (e) => {
       password: form.password.value,
     }),
   })
-    .then((response) => response.json())
-    
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      return response.json();
+    })
     .then((data) => {
       if (data.error) {
         alert("Erreur dans l’identifiant ou le mot de passe");
-            } else {
-      // récupérer le token 
+      } else {
         console.log(data);
-        localStorage.setItem("token", data.token)
-        location.replace(
-"index.html"
-      );
+        localStorage.setItem("bearer", JSON.stringify(data.token));
+        location.replace("index.html");
       }
     })
     .catch((err) => {
       console.log(err);
+      alert("Une erreur est survenue lors de la connexion");
     });
 });

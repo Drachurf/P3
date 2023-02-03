@@ -4,6 +4,7 @@ const articles = await works.json();
 
 //générer la gallerie + affichage des photos dans la modal
 function genererArticles(articles) {
+
   for (let i = 0; i < articles.length; i++) {
     const article = articles[i];
     //Récupération de l'élément du DOM qui accueillera les fiches + créations balises
@@ -99,23 +100,21 @@ boutonHotel.addEventListener("click", function () {
 
 
 //récupération du token 
-const token = localStorage.getItem("token");
-console.log(token);
+
+ /*const token = JSON.parse(localStorage.getItem("bearer"));
+  console.log(token);
+ if (token =! null){
+  } else {
+  const connecte = document.getElementsByClassName("connecte")
+    connecte = document.getElementsByClassName(e.target.getAttribute("connecte"))
+    connecte.style.display = 'flex'
+  }*/
+
 
 // mode edition
-const OpenConnecte = async function (e) {
-  e.preventDefault();
-  if (token === null){
-    return
-  }else{
-  connecte = document.getElementsByClassName(e.target.getAttribute("connecte"))
-  connecte.style.display = 'flex'
-  } 
-}
-
 const modal1et2 = document.querySelectorAll("#modal1 , #modal2")
 console.log(modal1et2);
-
+// il me manque la fermeture de la modale au click extérieur. 
 // Modale
 let modal = null;
 const openModal = async function (e) {
@@ -192,18 +191,54 @@ trash.forEach(function(trash) {
         "Content-Type": "application/json; charset=UTF-8",
       }
     })
-      .then(alert('Document supprimé'))
+      .then(async (response) => {
+      newphoto.querySelector("img").remove();
+      (alert('Document supprimé'))
+    })
   })
 });
 
 
-
-
 //Ajouter des Elements dans la modale 2
-const formulairePhoto = document.getElementById('btnvalider')
-console.log(formulairePhoto);
-formulairePhoto.addEventListener("click", function (e) {
+const formulairePhoto = document.getElementById('btnvalider');
+const newphoto = document.querySelector('.newphoto')
+const addImage = document.getElementById('imgInp');
+const addTitre = document.getElementById('title');
+const addCategory = document.getElementById('category');
+
+  formulairePhoto.onclick = async function (e) {
+    e.preventDefault();
+
+let formData = new FormData();
+    formData.append("image", addImage.files[0]);
+    formData.append("title", addTitre.value);
+    formData.append("category", addCategory.value);
+
+    console.log(new FormData);
+
+    await fetch(`http://localhost:5678/api/works`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+      body: formData,
+    })
+    .then(async (response) => {
+      if (response.ok) {
+
+       alert ('photo ajoutée')
+      } else {
+        console.log("error");
+        alert(
+          "Cela ne fonctionne paaaaaaaaaaaaaaaaaaaaaaaaas [(ajouter un (a) à chaque échec]"
+        );
+      }
+  })
+}
+
+/*formulairePhoto.addEventListener("click", function (e) {
   e.preventDefault();
+
   const someData = {
     image: document.getElementById('imgInp').files[0],
     title: document.getElementById('title').value,
@@ -215,40 +250,18 @@ formulairePhoto.addEventListener("click", function (e) {
     method: 'POST', 
     headers: {
       'accepte': "application/json",
-      "Content-Type": "application/json; charset=UTF-8",
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
      body: JSON.stringify(someData)
    }
    fetch("http://localhost:5678/api/works", postMethod)
-   .then(response => response.json())
-   .then(data => console.log(data)) 
-   .catch(err => console.log(err))
-  })
-
-  /*async function addNewProject() {
-  const formData = new FormData();
-  // Ajout du fichier a l'objet FormData
-  formData.append("image", fileInput.files[0]);
-  formData.append("title", titleInputModale2.value);
-  formData.append("category", categoryInput.value);
-
-  await fetch(`http://localhost:5678/api/works`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${sessionStorage["adminToken"]}`,
-    },
-    body: formData,
-  }).then(async (response) => {
+   .then(async (response) => {
     if (response.ok) {
-      divImageModale2.querySelector("img").remove();
-      hiddenInputModale2.value = "";
-      titleInputModale2.value = "";
+      location.replace(
+        "index.html"
+              );
     } else {
-      console.log("error");
-      alert(
-        "Veuillez verifier que vous avez bien ajouté un Titre et une image au bon format"
-      );
+      alert ("fichier refusé, vérifier son format et sa taille")
     }
   });
-}*/ 
+})*/ 

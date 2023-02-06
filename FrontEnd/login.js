@@ -28,8 +28,8 @@ let button = form.submit.addEventListener("click", (e) => {
       if (data.error) {
         alert("Erreur dans l’identifiant ou le mot de passe");
       } else {
-        console.log(data);
         localStorage.setItem("bearer", JSON.stringify(data.token));
+        localStorage.setItem("token", data.token)
         location.replace("index.html");
       }
     })

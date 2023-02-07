@@ -228,7 +228,7 @@ formulairePhoto.addEventListener("click", async function (e) {
     body: formData,
   }).then(async (response) => {
     if (response.ok) {
-      alert("Document ajouté");
+      alert("Document ajouté");sessionStorage
       sectionModal.remove();
     } else {
       alert("raté !");

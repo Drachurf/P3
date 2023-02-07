@@ -35,6 +35,6 @@ let button = form.submit.addEventListener("click", (e) => {
     })
     .catch((err) => {
       console.log(err);
-      alert("Une erreur est survenue lors de la connexion");
+      alert("Erreur dans l’identifiant ou le mot de passe");;
     });
 });

@@ -97,7 +97,7 @@ boutonHotel.addEventListener("click", function () {
 });
 
 try {
-  const token = JSON.parse(localStorage.getItem("bearer"));
+  const token = JSON.parse(sessionStorage.getItem("bearer"));
   const connecte = token ? "flex" : "none";
   document.querySelectorAll(".connecte").forEach((element) => {
     element.style.display = connecte;
@@ -196,7 +196,7 @@ trash.forEach(function (trash) {
       method: "DELETE",
       body: null,
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
         "Content-Type": "application/json; charset=UTF-8",
       },
     }).then(async (response) => {
@@ -223,7 +223,7 @@ formulairePhoto.addEventListener("click", async function (e) {
   await fetch(`http://localhost:5678/api/works`, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
+      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
     },
     body: formData,
   }).then(async (response) => {

@@ -352,9 +352,7 @@ display: none ;
   width: 23px;
   border: none;
 }
-h3 {
-  height: 15px;
-}
+
 .galleryeditor {
   display: flex;
   flex-wrap: wrap;

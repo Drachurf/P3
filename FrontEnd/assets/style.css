@@ -209,7 +209,8 @@ footer nav ul {
   grid-row-gap: 20px;
 }
 .gallery img {
-  width: 100%;
+  width: 313px;
+  height: 418px;
 }
 .barrepub {
   background: black;
@@ -352,8 +353,7 @@ display: none ;
   border: none;
 }
 h3 {
-  font-size: 26px;
-  text-align: center;
+  height: 15px;
 }
 .galleryeditor {
   display: flex;

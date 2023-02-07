@@ -201,11 +201,13 @@ trash.forEach(function (trash) {
       },
     }).then(async (response) => {
       alert("Document supprimé");
+      location.reload();
     });
-  });
-});
+  })
+})
 
 //Ajouter des Elements dans la modale 2
+const sectionModal = document.querySelector(".modal-wrapper");
 const formulairePhoto = document.getElementById("btnvalider");
 const addImage = document.querySelector("#imgInp");
 const addTitre = document.getElementById("title");
@@ -227,8 +229,9 @@ formulairePhoto.addEventListener("click", async function (e) {
   }).then(async (response) => {
     if (response.ok) {
       alert("Document ajouté");
+      sectionModal.remove();
     } else {
       alert("raté !");
     }
   });
-});
+})

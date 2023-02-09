@@ -248,6 +248,8 @@ formulairePhoto.addEventListener("click", async function (e) {
       const articles = await works.json();
       genererArticles(articles);
       genereModal(articles);
+      montrer.style.display = "none";
+      apercu.style.display = "block";
     } else {
       alert("raté !");
     }

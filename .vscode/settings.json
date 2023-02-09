@@ -1,0 +1,17 @@
+{
+    "liveServer.settings.AdvanceCustomBrowserCmdLine": "",
+    "liveServer.settings.ChromeDebuggingAttachment": false,
+    "liveServer.settings.ignoreFiles": [
+        
+        
+
+
+        ".vscode/**",
+        "**/*.sass",
+        "**/*scss",
+        "**/*.ts",
+        "**/*Backend",
+    ]  
+}
+
+// **/Backend,  et je crois que c'est "**/Backend/" **/*Backend

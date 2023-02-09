@@ -15,8 +15,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
-	<script type="module" src="gallery.js"> </script>
-	<script type="module" src="login.js"> </script>
+
 </head>
 <body>
 	<div class="barrepub connecte"><img src="assets/icons/modeedition.png" widht="40px" height="35px"> <button class="publier">Publier les changements</button></div>
@@ -53,38 +52,49 @@
     <aside> 
 		<div id="modal1" class="modal" role="dialog" style="display:none">
 			<div class="modal-wrapper js-modal-stop">
-				<button class="js-modal-close fermer">X</button>
-				<h3>Galerie Photo</h3>
+				<i class="fa-solid fa-xmark js-modal-close fermer"></i>
+				<h5>Galerie Photo</h5>
 				<!-- Photo modal -->
-				<div class="galleryeditor"></div>
-					<hr/> 
-					<a href="#modal2" class="btnphotomodal2">Ajouter photo</a>
-					<button class="suppression">Supprimer la galerie</button>
+				<div class="galleryeditor">
+					<i class="fa-solid fa-up-down-left-right"></i>
+				</div>
+				<hr/> 
+				<a href="#modal2" id="btnphotomodal2" class="btnphotomodal2">Ajouter photo</a>
+				<button class="suppression">Supprimer la galerie</button>
 			</div>
 		</div>
 
 		<!-- modale 2-->
-		<div id="modal2" class="modal" role="dialog"  style="display:none;">
+		<div id="modal2" class="modal" role="dialog"  style="display:none">
 			<div class="modal-wrapper js-modal-stop">
-				<div class="navmodal" ><button class="return">retour</button> 
-						<button class="js-modal-close fermer">X</button>
+				<div class="navmodal"> 
+						<a href="#modal1"><i class="fa-solid fa-arrow-left" id="retour"></i></a> 
+						<i class="fa-solid fa-xmark js-modal-close fermer"></i>
 				</div>
-				<h3>Ajout Photo</h3>
+				<h5>Ajout Photo</h5>
+				<form method="post" url="" class="formulaire">
 					<div class="newphoto">
-						<img src="#" alt="#" name="imageUrl">
-						<input value="+ Ajouter photo">
-						<p>jpg, png : 4mo max</p>
+						<div class="montrer"><img class="blah" src="#" alt=""/></div>
+						<i class="fa-solid fa-image apercu"></i>
+						<div class="upload-btn-wrapper apercu">
+								<input type="file" name="imgInp" id="imgInp" accept="image/png, image/jpeg, image/jpg"/>
+								<button  class="btnaddphoto">+ Ajouter photo</button>
+								<p>jpg, png : 4mo max</p>
+						</div>
 					</div>
-					Titre <br>
-					<input type="text" name="title"><br>
-					<label>Catégorie</label><br>
-					<select name="categoryId">
-						<option value="Id1">Objets</option>
-						<option value="Id2">Appartements</option>
-    					<option value="Id3">Hotels & restaurants</option>
-					</select><br><hr/>
-					<button class="ajout-photo" id="btnvalider">Valider</button>
-			</div>
+					<div><label>Titre</label><br>
+					<input class="addimagechoice" type="text" id="title" name="title" required></div><br>
+					<div><label>Catégorie</label><br>
+					<select class="addimagechoice" id="category" name="category" required>
+						<option value="Id0000"></option>
+						<option value="1">Objets</option>
+						<option value="2">Appartements</option>
+    					<option value="3">Hotels & restaurants</option>
+					</select></div>
+					<br>
+					<hr/>
+					<button id="btnvalider" type="submit">Valider</button>
+				</form>
 		</div>
 	</aside> 
 		<!--mise en place du filtre-->
@@ -118,7 +128,6 @@
 		</ul>
 	</nav>
 </footer>
+<script type="module" src="gallery.js"></script>
 </body>
 </html>
-
-

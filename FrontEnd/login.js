@@ -1,32 +1,40 @@
-/*document.querySelector("#connect").addEventListener("click", async function (e) {
-  e.preventDefault()
-    await fetch("http://localhost:5678/api/users/login", {
-      method : "POST",
-      Headers : {
-        "accepte": "application/json",
-        "Content-Type": "application/json;",
-      },
-      body: JSON.stringify({
-        email : document.getElementById('maileuh').value,
-        password : document.getElementById('pass').value
+const form = {
+  email: document.querySelector("#maileuh"),
+  password: document.querySelector("#pass"),
+  submit: document.querySelector("#btnconnection"),
+};
+
+let button = form.submit.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  fetch("http://localhost:5678/api/users/login", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: form.email.value,
+      password: form.password.value,
+    }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      return response.json();
     })
-  }
-    .then(function(response){
-      if (response.ok){
-        console.log("yyyaaaaaaaa");
-  
-      }else{
-        alert("nnnnnoooooooo");
+    .then((data) => {
+      if (data.error) {
+        alert("Erreur dans l’identifiant ou le mot de passe");
+      } else {
+        sessionStorage.setItem("bearer", JSON.stringify(data.token));
+        sessionStorage.setItem("token", data.token)
+        location.replace("index.html");
       }
     })
-    .catch(function (error){
-      console.log(error);
-    })
-    )
-  })*/
-
- 
- //une fois la connection mise il faudra mettre une fonction qui passe "connecte" en mode hidden=true
-  const connecte = document.querySelectorAll(".connecte")
-  console.log(connecte);
- 
+    .catch((err) => {
+      console.log(err);
+      alert("Erreur dans l’identifiant ou le mot de passe");;
+    });
+});

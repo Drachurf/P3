@@ -4,24 +4,30 @@ const articles = await works.json();
 
 //générer la gallerie + affichage des photos dans la modal
 function genererArticles(articles) {
+const sectionGallery = document.querySelector(".gallery");
+sectionGallery.innerHTML = ""
   for (let i = 0; i < articles.length; i++) {
     const article = articles[i];
     //Récupération de l'élément du DOM qui accueillera les fiches + créations balises
-    const sectionGallery = document.querySelector(".gallery");
     const galleryElement = document.createElement("article");
     const imageElement = document.createElement("img");
     imageElement.src = article.imageUrl;
     imageElement.crossOrigin = "anonymous";
     imageElement.alt = article.title;
-
     const nomElement = document.createElement("h3");
     nomElement.innerText = article.title;
-
     sectionGallery.appendChild(galleryElement);
     galleryElement.appendChild(imageElement);
     galleryElement.appendChild(nomElement);
+  }
+}
+genererArticles(articles);
 
-    //Mise en place de la modale
+//Mise en place de la modale
+function genereModal (articles) {
+  for (let i = 0; i < articles.length; i++) {
+    const article = articles[i];
+    //Récupération de l'élément du DOM qui accueillera les fiches + créations balises
     const galleryEditor = document.querySelector(".galleryeditor");
     const editorElement = document.createElement("editor");
     const editImage = document.createElement("img");
@@ -50,9 +56,9 @@ function genererArticles(articles) {
     divlogo.appendChild(editerLogo);
     editorElement.appendChild(editerTitre);
   }
+  addDelete()
 }
-genererArticles(articles);
-
+genereModal(articles);
 // filtre TOUS
 const boutonTous = document.querySelector("#btntous");
 boutonTous.addEventListener("click", function () {
@@ -188,6 +194,7 @@ imgInp.onchange = () => {
 };
 
 // supprimer des éléments
+function addDelete() {
 const trash = document.querySelectorAll(".trash");
 trash.forEach(function (trash) {
   trash.addEventListener("click", function (e) {
@@ -201,10 +208,17 @@ trash.forEach(function (trash) {
       },
     }).then(async (response) => {
       alert("Document supprimé");
-      location.reload();
+      document.querySelector(".galleryeditor").innerHTML= "";
+      const works = await fetch("http://localhost:5678/api/works");
+      const articles = await works.json();
+      genererArticles(articles);
+      genereModal(articles);
     });
   })
 })
+}
+
+
 
 //Ajouter des Elements dans la modale 2
 const sectionModal = document.querySelector(".modal-wrapper");
@@ -228,8 +242,12 @@ formulairePhoto.addEventListener("click", async function (e) {
     body: formData,
   }).then(async (response) => {
     if (response.ok) {
-      alert("Document ajouté");sessionStorage
-      sectionModal.remove();
+      alert("Document ajouté");
+      document.querySelector(".galleryeditor").innerHTML= "";
+      const works = await fetch("http://localhost:5678/api/works");
+      const articles = await works.json();
+      genererArticles(articles);
+      genereModal(articles);
     } else {
       alert("raté !");
     }

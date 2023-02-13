@@ -108,6 +108,9 @@ q:after {
   content: "";
   content: none;
 }
+.imageedition{
+  height : 40px;
+}
 table {
   border-collapse: collapse;
   border-spacing: 0;

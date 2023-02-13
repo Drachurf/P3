@@ -18,7 +18,7 @@
 
 </head>
 <body>
-	<div class="barrepub connecte"><img src="assets/icons/modeedition.png" widht="40px" height="35px"> <button class="publier">Publier les changements</button></div>
+	<div class="barrepub connecte"><img src="assets/icons/modeedition.png" alt="Modifier" class="imageedition"><button class="publier">Publier les changements</button></div>
 <header>
 
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
@@ -35,10 +35,10 @@
 	<section id="introduction">
 		<figure>
 			<img src="./assets/images/sophie-bluel.png" alt="Photo de Sophie Bluel" class="introimg">
-			<img src="assets/icons/logomodifier.png" class="modifier1 connecte">
+			<img src="assets/icons/logomodifier.png" alt="modifier" class="modifier1 connecte">
 		</figure>
 		<article>
-			<img src="assets/icons/logomodifier.png" class="modifier2 connecte">
+			<img src="assets/icons/logomodifier.png" alt="Modifier" class="modifier2 connecte">
 			<h2>Designer d'espace</h2>
 			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
 			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
@@ -46,7 +46,7 @@
 		</article>
 	</section>
 	<section id="portfolio">
-	<div class="navmodifier"><h2>Mes Projets </h2><img src="assets/icons/logomodifier.png" href="#modal1" class="js-modal modifier connecte"></div>
+	<div class="navmodifier"><h2>Mes Projets </h2><img src="assets/icons/logomodifier.png" alt="Modifier" href="#modal1" class="js-modal modifier connecte"></div>
 	
 	<!-- Mise en place de la modale-->
     <aside> 
@@ -72,7 +72,7 @@
 						<i class="fa-solid fa-xmark js-modal-close fermer"></i>
 				</div>
 				<h5>Ajout Photo</h5>
-				<form method="post" url="" class="formulaire" id="form">
+				<form method="post" class="formulaire" id="form">
 					<div class="newphoto">
 						<div class="montrer"><img class="blah" src="#" alt=""/></div>
 						<i class="fa-solid fa-image apercu"></i>
@@ -86,7 +86,7 @@
 					<input class="addimagechoice" type="text" id="title" name="title" required></div><br>
 					<div><label>Catégorie</label><br>
 					<select class="addimagechoice" id="category" name="category" required>
-						<option value="Id0000"></option>
+						<option value=""> Choisissez une catégorie</option>
 						<option value="1">Objets</option>
 						<option value="2">Appartements</option>
     					<option value="3">Hotels & restaurants</option>
@@ -96,6 +96,7 @@
 					<button id="btnvalider" type="submit">Valider</button>
 				</form>
 		</div>
+	</div>
 	</aside> 
 		<!--mise en place du filtre-->
 			<div class="filtre">

@@ -2,7 +2,7 @@
 const works = await fetch("http://localhost:5678/api/works");
 const articles = await works.json();
 
-//générer la gallerie + affichage des photos dans la modal
+//générer la gallerie page index
 function genererArticles(articles) {
 const sectionGallery = document.querySelector(".gallery");
 sectionGallery.innerHTML = ""
@@ -76,7 +76,6 @@ boutonObjet.addEventListener("click", function () {
   const filtreObjets = articles.filter(function (article) {
     return article.category.id === 1;
   });
-
   document.querySelector(".gallery").innerHTML = "";
   genererArticles(filtreObjets);
 });
@@ -87,7 +86,6 @@ boutonAppart.addEventListener("click", function () {
   const filtreApparts = articles.filter(function (article) {
     return article.category.id === 2;
   });
-
   document.querySelector(".gallery").innerHTML = "";
   genererArticles(filtreApparts);
 });
@@ -98,7 +96,6 @@ boutonHotel.addEventListener("click", function () {
   const filtreHotels = articles.filter(function (article) {
     return article.category.id === 3;
   });
-
   document.querySelector(".gallery").innerHTML = "";
   genererArticles(filtreHotels);
 });
@@ -230,6 +227,12 @@ const addCategory = document.getElementById("category");
 formulairePhoto.addEventListener("click", async function (e) {
   e.preventDefault();
 
+   // Image et un titre ont été ajoutés ?
+   if (!addImage.value || !addTitre.value) {
+    alert("Veuillez ajouter une image et un titre.");
+    return;
+  }
+
   const formData = new FormData();
   formData.append("image", addImage.files[0], addImage.files[0].name);
   formData.append("title", addTitre.value);
@@ -269,7 +272,7 @@ formulairePhoto.addEventListener("click", async function (e) {
       genereModal(articles);
       
     } else {
-      alert("Vérifiez avoir mis une image, un titre et une catégorie !");
+      alert("Attention vous n'avez pas sélectionné de catégorie !");
     }
   });
 })

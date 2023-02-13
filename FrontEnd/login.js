@@ -25,13 +25,11 @@ let button = form.submit.addEventListener("click", (e) => {
       return response.json();
     })
     .then((data) => {
-      if (data.error) {
-        alert("Erreur dans l’identifiant ou le mot de passe");
-      } else {
+    
         sessionStorage.setItem("bearer", JSON.stringify(data.token));
         sessionStorage.setItem("token", data.token)
         location.replace("index.html");
-      }
+  
     })
     .catch((err) => {
       console.log(err);

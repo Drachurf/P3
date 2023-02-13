@@ -1,4 +1,4 @@
-// Récupération des photos depuis API
+//Récupération des photos depuis API
 const works = await fetch("http://localhost:5678/api/works");
 const articles = await works.json();
 
@@ -59,6 +59,7 @@ function genereModal (articles) {
   addDelete()
 }
 genereModal(articles);
+
 // filtre TOUS
 const boutonTous = document.querySelector("#btntous");
 boutonTous.addEventListener("click", function () {
@@ -140,9 +141,6 @@ const openModal = async function (e) {
 document.querySelectorAll(".js-modal").forEach((e) => {
   e.addEventListener("click", openModal);
 }),
-  window.addEventListener("keydown", function (e) {
-    ("Escape" !== e.key && "Esc" !== e.key) || closeModal(e)
-  });
 
 // ouvrir la modal2
 boutonModal2.addEventListener("click", function () {
@@ -178,21 +176,6 @@ window.addEventListener("click", function (event) {
   }
 });
 
-//Aperçu de la photo avant de l'ajouter.
-const blah = document.querySelector(".blah");
-const apercu = document.querySelector(".apercu");
-const montrer = document.querySelector(".montrer");
-const newPhoto = document.querySelector(".newphoto");
-
-imgInp.onchange = () => {
-  const [file] = imgInp.files;
-  if (file) {
-    blah.src = URL.createObjectURL(file);
-    montrer.style.display = "block";
-    apercu.style.display = "none";
-  }
-};
-
 // supprimer des éléments
 function addDelete() {
 const trash = document.querySelectorAll(".trash");
@@ -218,7 +201,24 @@ trash.forEach(function (trash) {
 })
 }
 
+//Aperçu de la photo avant de l'ajouter.
+const blah = document.querySelector(".blah");
+const apercu = document.querySelector(".apercu");
+const montrer = document.querySelector(".montrer");
 
+imgInp.onchange = () => {
+  const [file] = imgInp.files;
+  if (file) {
+    blah.src = URL.createObjectURL(file);
+    montrer.style.display = "block";
+    apercu.style.display = "none";
+  } else {
+    // Réinitialiser l'aperçu de l'image si aucun fichier n'est sélectionné
+    blah.src = "";
+    montrer.style.display = "none";
+    apercu.style.display = "block";
+  }
+};
 
 //Ajouter des Elements dans la modale 2
 const sectionModal = document.querySelector(".modal-wrapper");
@@ -243,15 +243,33 @@ formulairePhoto.addEventListener("click", async function (e) {
   }).then(async (response) => {
     if (response.ok) {
       alert("Document ajouté");
+      //vider le formulaire
+      const form = document.getElementById('form');
+      form.reset();
+    
+      // Réinitialiser l'aperçu de l'image de la première image
+      if (addImage.files && addImage.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          blah.src = e.target.result;
+          montrer.style.display = "block";
+          apercu.style.display = "none";
+        };
+        reader.readAsDataURL(addImage.files[0]);
+      } else {
+        blah.src = "";
+        montrer.style.display = "";
+        apercu.style.display = "";
+      }
+      //apparition de l'élément
       document.querySelector(".galleryeditor").innerHTML= "";
       const works = await fetch("http://localhost:5678/api/works");
       const articles = await works.json();
       genererArticles(articles);
       genereModal(articles);
-      montrer.style.display = "none";
-      apercu.style.display = "block";
+      
     } else {
-      alert("raté !");
+      alert("Vérifiez avoir mis une image, un titre et une catégorie !");
     }
   });
 })

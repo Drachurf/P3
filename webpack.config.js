@@ -3,13 +3,13 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   mode: 'production',
-  entry: './FrontEnd/index.html',
+  entry: './FrontEnd/gallery.js',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
   optimization: {
-    minimize: false,  // Désactive le minifieur intégré de Webpack
+    minimize: false,
     minimizer: [new TerserPlugin()],
   },
   module: {

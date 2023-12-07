@@ -3,7 +3,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   mode: 'production',
-  entry: './FrontEnd/gallery.js',
+  entry: './FrontEnd/index.html',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),

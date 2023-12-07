@@ -1,3 +1,4 @@
+import './index.html';
 //Récupération des photos depuis API
 const works = await fetch("http://localhost:5678/api/works");
 const articles = await works.json();
